@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 2 Lessons — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="lesson-header">
+    <div class="container lesson-header-inner">
+      <div class="lesson-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 2 — Advanced HTML &amp; Accessibility</p>
+      </div>
+      <div class="lesson-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="lesson-main">
+    <div class="container">
+      <div class="card progress-section">
+        <div class="progress-row">
+          <span>📚 Learning Progress</span>
+          <span id="lessonProgressPct">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="lessonProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card lesson-card">
+        <div class="lesson-meta" id="lessonNumber">Lesson 1 of 6</div>
+        <h2 id="lessonTitle">Lesson Title</h2>
+        <div class="lesson-body" id="lessonContent"></div>
+        <div class="lesson-nav">
+          <button class="btn btn-outline" id="prevBtn">← Previous Lesson</button>
+          <button class="btn btn-primary" id="nextBtn">Next Lesson →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 2;
+    var LESSONS = [
+      {
+        title: "Semantic HTML",
+        content: `
+<h3>What is Semantic HTML?</h3>
+<p>Semantic HTML uses elements that clearly describe their <strong>meaning and purpose</strong> — both to the browser and to the developer reading the code. Compare these two examples:</p>
+<div class="code-block">&lt;!-- Non-semantic: no meaning --&gt;
+&lt;div id="header"&gt;Welcome&lt;/div&gt;
+&lt;div id="nav"&gt;Links here&lt;/div&gt;
+
+&lt;!-- Semantic: meaningful tags --&gt;
+&lt;header&gt;Welcome&lt;/header&gt;
+&lt;nav&gt;Links here&lt;/nav&gt;</div>
+<h3>Why Does Semantics Matter?</h3>
+<ul>
+  <li><strong>Accessibility:</strong> Screen readers use semantic elements to navigate pages for visually impaired users.</li>
+  <li><strong>SEO:</strong> Search engines better understand page structure and rank content accurately.</li>
+  <li><strong>Maintainability:</strong> Other developers can read your code more easily.</li>
+</ul>
+<h3>Common Semantic Elements</h3>
+<ul>
+  <li><strong>&lt;header&gt;</strong> — Top section of the page or a section (usually contains logo and nav).</li>
+  <li><strong>&lt;nav&gt;</strong> — Navigation links.</li>
+  <li><strong>&lt;main&gt;</strong> — The primary content of the page (only one per page).</li>
+  <li><strong>&lt;article&gt;</strong> — A self-contained piece of content (e.g., a blog post).</li>
+  <li><strong>&lt;section&gt;</strong> — A thematic grouping of content with a heading.</li>
+  <li><strong>&lt;aside&gt;</strong> — Supplementary content (e.g., sidebars, ads).</li>
+  <li><strong>&lt;footer&gt;</strong> — Bottom section (copyright, contact links).</li>
+  <li><strong>&lt;figure&gt; / &lt;figcaption&gt;</strong> — An image with a caption.</li>
+</ul>
+<div class="code-block">&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;My Blog&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="/"&gt;Home&lt;/a&gt;
+      &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;First Post&lt;/h2&gt;
+      &lt;p&gt;Article content here...&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;&lt;p&gt;&copy; 2025 My Blog&lt;/p&gt;&lt;/footer&gt;
+&lt;/body&gt;</div>
+`
+      },
+      {
+        title: "HTML5 Elements",
+        content: `
+<h3>New Elements in HTML5</h3>
+<p>HTML5 introduced many new elements that help structure modern web pages more meaningfully. These elements were not available in older HTML versions.</p>
+<h3>Structural Elements</h3>
+<ul>
+  <li><strong>&lt;header&gt;</strong> — Introductory content or navigation.</li>
+  <li><strong>&lt;footer&gt;</strong> — Closing content, links, or copyright.</li>
+  <li><strong>&lt;main&gt;</strong> — The dominant content of the body.</li>
+  <li><strong>&lt;article&gt;</strong> — Independently distributable content.</li>
+  <li><strong>&lt;section&gt;</strong> — A themed section with a heading.</li>
+  <li><strong>&lt;aside&gt;</strong> — Tangentially related content.</li>
+  <li><strong>&lt;nav&gt;</strong> — Navigation links.</li>
+</ul>
+<h3>Inline & Text Elements</h3>
+<ul>
+  <li><strong>&lt;time&gt;</strong> — A specific date or time. The <code>datetime</code> attribute provides a machine-readable value.</li>
+  <li><strong>&lt;mark&gt;</strong> — Highlighted text.</li>
+  <li><strong>&lt;progress&gt;</strong> — A progress bar.</li>
+  <li><strong>&lt;meter&gt;</strong> — A scalar measurement within a known range.</li>
+  <li><strong>&lt;details&gt; / &lt;summary&gt;</strong> — A collapsible disclosure widget.</li>
+</ul>
+<div class="code-block">&lt;!-- Time element --&gt;
+&lt;p&gt;Published on &lt;time datetime="2025-01-15"&gt;January 15, 2025&lt;/time&gt;.&lt;/p&gt;
+
+&lt;!-- Progress bar --&gt;
+&lt;label&gt;Download: &lt;progress value="70" max="100"&gt;70%&lt;/progress&gt;&lt;/label&gt;
+
+&lt;!-- Collapsible section --&gt;
+&lt;details&gt;
+  &lt;summary&gt;Click to reveal answer&lt;/summary&gt;
+  &lt;p&gt;The answer is 42.&lt;/p&gt;
+&lt;/details&gt;</div>
+<div class="note-box"><strong>Note:</strong> Always use these semantic elements instead of &lt;div&gt; or &lt;span&gt; when the element has a specific meaning. It makes your HTML more readable and accessible.</div>
+`
+      },
+      {
+        title: "Forms and Validation",
+        content: `
+<h3>HTML5 Form Validation</h3>
+<p>HTML5 introduced <strong>built-in form validation</strong> that works without JavaScript. Browsers check form fields before submission using validation attributes.</p>
+<h3>Validation Attributes</h3>
+<ul>
+  <li><strong>required</strong> — The field must not be empty.</li>
+  <li><strong>minlength / maxlength</strong> — Minimum and maximum number of characters.</li>
+  <li><strong>min / max</strong> — Minimum and maximum numeric values.</li>
+  <li><strong>pattern</strong> — A regular expression the input must match.</li>
+  <li><strong>type="email"</strong> — Automatically validates email format.</li>
+  <li><strong>type="url"</strong> — Validates URL format.</li>
+  <li><strong>type="number"</strong> — Accepts only numbers.</li>
+</ul>
+<div class="code-block">&lt;form&gt;
+  &lt;!-- Required field --&gt;
+  &lt;input type="text" name="name" required placeholder="Full name" /&gt;
+
+  &lt;!-- Email with built-in validation --&gt;
+  &lt;input type="email" name="email" required /&gt;
+
+  &lt;!-- Password: minimum 8 characters --&gt;
+  &lt;input type="password" name="pwd" minlength="8" required /&gt;
+
+  &lt;!-- Age between 18 and 100 --&gt;
+  &lt;input type="number" name="age" min="18" max="100" /&gt;
+
+  &lt;!-- Pattern: only letters --&gt;
+  &lt;input type="text" name="code" pattern="[A-Za-z]+" title="Letters only" /&gt;
+
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</div>
+<h3>The novalidate Attribute</h3>
+<p>Add <code>novalidate</code> to the <code>&lt;form&gt;</code> tag if you want to handle all validation manually with JavaScript.</p>
+<div class="code-block">&lt;form novalidate&gt;
+  &lt;!-- Custom JS validation applied here --&gt;
+&lt;/form&gt;</div>
+<div class="note-box"><strong>Best Practice:</strong> HTML5 validation is a helpful first layer, but always validate data on the server too. Client-side validation can be bypassed by users.</div>
+`
+      },
+      {
+        title: "Audio and Video",
+        content: `
+<h3>Embedding Audio — &lt;audio&gt;</h3>
+<p>The HTML5 <code>&lt;audio&gt;</code> element lets you embed sound files directly into a webpage without plugins.</p>
+<div class="code-block">&lt;audio controls&gt;
+  &lt;source src="music.mp3" type="audio/mpeg" /&gt;
+  &lt;source src="music.ogg" type="audio/ogg" /&gt;
+  &lt;p&gt;Your browser does not support the audio element.&lt;/p&gt;
+&lt;/audio&gt;</div>
+<h3>Audio Attributes</h3>
+<ul>
+  <li><strong>controls</strong> — Shows play/pause/volume controls.</li>
+  <li><strong>autoplay</strong> — Starts playing automatically (use sparingly — it is disruptive).</li>
+  <li><strong>loop</strong> — Repeats the audio indefinitely.</li>
+  <li><strong>muted</strong> — Starts muted.</li>
+</ul>
+<h3>Embedding Video — &lt;video&gt;</h3>
+<p>The <code>&lt;video&gt;</code> element works similarly to audio. Always provide multiple formats for browser compatibility.</p>
+<div class="code-block">&lt;video controls width="640" height="360"&gt;
+  &lt;source src="intro.mp4" type="video/mp4" /&gt;
+  &lt;source src="intro.webm" type="video/webm" /&gt;
+  &lt;p&gt;Your browser does not support the video tag.&lt;/p&gt;
+&lt;/video&gt;</div>
+<h3>Video Attributes</h3>
+<ul>
+  <li><strong>controls</strong> — Shows video controls.</li>
+  <li><strong>poster</strong> — Image shown before the video plays.</li>
+  <li><strong>autoplay + muted</strong> — Required together for autoplay to work in modern browsers.</li>
+  <li><strong>preload</strong> — Hint to the browser on how much to preload ("none", "metadata", "auto").</li>
+</ul>
+<div class="code-block">&lt;video controls poster="thumbnail.jpg" preload="metadata"&gt;
+  &lt;source src="demo.mp4" type="video/mp4" /&gt;
+&lt;/video&gt;</div>
+`
+      },
+      {
+        title: "Accessibility Fundamentals",
+        content: `
+<h3>What is Web Accessibility?</h3>
+<p>Web accessibility means designing and building websites so that <strong>everyone can use them</strong> — including people with visual, auditory, motor, or cognitive disabilities. An accessible website is also better for all users, not just those with disabilities.</p>
+<h3>The Four POUR Principles (WCAG)</h3>
+<ul>
+  <li><strong>Perceivable:</strong> Users must be able to see or hear the content (e.g., alt text for images).</li>
+  <li><strong>Operable:</strong> The interface must be navigable by keyboard, not just mouse.</li>
+  <li><strong>Understandable:</strong> Content and controls must be clear and predictable.</li>
+  <li><strong>Robust:</strong> Works with assistive technologies like screen readers.</li>
+</ul>
+<h3>Key Accessibility Practices</h3>
+<ul>
+  <li>Use <strong>semantic HTML</strong> — screen readers rely on meaningful tags like &lt;nav&gt;, &lt;main&gt;, &lt;button&gt;.</li>
+  <li>Always provide <strong>alt text</strong> for images.</li>
+  <li>Use <strong>labels</strong> for all form inputs.</li>
+  <li>Ensure sufficient <strong>color contrast</strong> (at least 4.5:1 ratio for normal text).</li>
+  <li>Make all interactive elements <strong>keyboard accessible</strong>.</li>
+  <li>Avoid relying solely on color to convey information.</li>
+</ul>
+<div class="code-block">&lt;!-- Bad: no label --&gt;
+&lt;input type="text" placeholder="Enter name" /&gt;
+
+&lt;!-- Good: properly labelled --&gt;
+&lt;label for="name"&gt;Full Name&lt;/label&gt;
+&lt;input type="text" id="name" name="name" /&gt;
+
+&lt;!-- Bad: no alt text --&gt;
+&lt;img src="chart.png" /&gt;
+
+&lt;!-- Good: descriptive alt --&gt;
+&lt;img src="chart.png" alt="Bar chart showing monthly sales from Jan to Dec 2024" /&gt;</div>
+<div class="note-box"><strong>Remember:</strong> Accessibility is not optional. In many countries, inaccessible websites violate disability discrimination laws.</div>
+`
+      },
+      {
+        title: "ARIA Basics and Accessible Web Structure",
+        content: `
+<h3>What is ARIA?</h3>
+<p><strong>ARIA</strong> stands for <em>Accessible Rich Internet Applications</em>. It is a set of HTML attributes defined by the W3C that makes dynamic web content more accessible to users of screen readers and other assistive technologies.</p>
+<div class="note-box"><strong>Rule #1:</strong> Always use native semantic HTML first. Only use ARIA when native HTML is insufficient. For example, use <code>&lt;button&gt;</code> instead of <code>&lt;div role="button"&gt;</code>.</div>
+<h3>ARIA Roles</h3>
+<p>The <code>role</code> attribute identifies the purpose of an element to assistive technologies.</p>
+<div class="code-block">&lt;div role="navigation"&gt; ... &lt;/div&gt;  &lt;!-- Same as &lt;nav&gt; --&gt;
+&lt;div role="main"&gt; ... &lt;/div&gt;       &lt;!-- Same as &lt;main&gt; --&gt;
+&lt;div role="alert"&gt;Error message!&lt;/div&gt;  &lt;!-- Announced immediately --&gt;
+&lt;div role="button" tabindex="0"&gt;Click me&lt;/div&gt;</div>
+<h3>ARIA States and Properties</h3>
+<ul>
+  <li><strong>aria-label</strong> — Provides an accessible name for an element when no visible label exists.</li>
+  <li><strong>aria-labelledby</strong> — Points to an element whose text is used as the label.</li>
+  <li><strong>aria-hidden="true"</strong> — Hides decorative elements from screen readers.</li>
+  <li><strong>aria-expanded</strong> — Indicates whether a collapsible section is open or closed.</li>
+  <li><strong>aria-live</strong> — Announces dynamic content changes to screen readers.</li>
+</ul>
+<div class="code-block">&lt;!-- Icon button with no visible text --&gt;
+&lt;button aria-label="Close menu"&gt;
+  &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Accordion toggle --&gt;
+&lt;button aria-expanded="false" aria-controls="panel1"&gt;
+  Show Details
+&lt;/button&gt;
+&lt;div id="panel1" hidden&gt;
+  &lt;p&gt;Panel content here.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Live region for dynamic messages --&gt;
+&lt;div aria-live="polite" id="status"&gt;&lt;/div&gt;</div>
+<h3>Tab Order and Focus Management</h3>
+<p>All interactive elements must be reachable by pressing the Tab key. Use <code>tabindex="0"</code> to add non-interactive elements to the tab order, and <code>tabindex="-1"</code> to remove elements from it while keeping them focusable via JavaScript.</p>
+`
+      }
+    ];
+  </script>
+  <script src="js/lessons.js"></script>
+</body>
+</html>

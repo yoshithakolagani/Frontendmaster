@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="dash-header">
+    <div class="container dash-header-inner">
+      <div class="dash-brand">
+        <h1>🎓 Frontend Master</h1>
+        <p>Interactive Level-Based Learning System</p>
+      </div>
+      <div class="dash-user">
+        <span>👤 <span id="headerName">Student</span></span>
+        <a href="project-overview.html" class="btn btn-outline" style="border-color: rgba(255,255,255,0.4); color:#fff; font-size:0.88rem; padding:0.45rem 0.9rem;">📋 Overview</a>
+        <button class="btn btn-outline" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="dash-main">
+    <div class="container">
+
+      <!-- Course completion banner (hidden until complete) -->
+      <div class="completion-banner" id="completionBanner">
+        <h2>🏆 Course Complete!</h2>
+        <p>Congratulations! You have mastered all six levels of Frontend Master!</p>
+      </div>
+
+      <!-- Welcome card -->
+      <div class="card welcome-card">
+        <h2>Welcome back, <span id="welcomeName">Student</span>! 👋</h2>
+        <p>Continue your frontend learning journey. Complete each level's lessons and quiz to unlock the next.</p>
+      </div>
+
+      <!-- Overall progress -->
+      <div class="card progress-card">
+        <div class="progress-card-header">
+          <h3>📊 Overall Learning Progress</h3>
+          <span class="progress-pct" id="overallPercent">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="overallBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Continue learning button -->
+      <div class="continue-wrap">
+        <a href="#" class="btn btn-primary" id="continueBtn">Continue Learning</a>
+      </div>
+
+      <!-- Level cards grid -->
+      <div class="level-grid" id="levelGrid">
+        <!-- Cards injected by dashboard.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

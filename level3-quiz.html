@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 3 Quiz — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <div class="quiz-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 3 — CSS Fundamentals</p>
+      </div>
+      <div class="quiz-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="quiz-main">
+    <div class="container">
+      <div class="card quiz-info-card">
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Question</div>
+          <div class="quiz-info-value" id="questionCounter">1 / 10</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Score</div>
+          <div class="quiz-info-value" id="scoreCounter">0</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Time</div>
+          <div class="quiz-info-value" id="timerDisplay">10:00</div>
+        </div>
+      </div>
+      <div class="card quiz-progress-section">
+        <div class="progress-wrap">
+          <div class="progress-fill" id="quizProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card question-card">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="explanation-box" id="explanationBox"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 3;
+    var QUIZ_DATA = [
+      {
+        question: "What does CSS stand for?",
+        options: [
+          "Cascading Style Sheets",
+          "Computer Style Syntax",
+          "Creative Styling Software",
+          "Colored Sheet Styles"
+        ],
+        correct: 0,
+        explanation: "CSS stands for Cascading Style Sheets. It is used to style and format the layout of HTML web pages."
+      },
+      {
+        question: "Which CSS selector targets elements with a specific class attribute such as class='card'?",
+        options: [
+          "#card",
+          ".card",
+          "*card",
+          "card"
+        ],
+        correct: 1,
+        explanation: "In CSS, a class selector is prefixed with a period (.), for example .card. An ID selector uses a hash (#), like #card."
+      },
+      {
+        question: "Which selector has the highest specificity?",
+        options: [
+          "Element selector (e.g. h1)",
+          "Class selector (e.g. .title)",
+          "ID selector (e.g. #header)",
+          "Universal selector (e.g. *)"
+        ],
+        correct: 2,
+        explanation: "ID selectors (#id) have higher specificity than class selectors (.class) and element/tag selectors (h1). Inline styles have even higher specificity."
+      },
+      {
+        question: "In the CSS box model, which layer represents the space between the content and the border?",
+        options: [
+          "Margin",
+          "Padding",
+          "Outline",
+          "Gap"
+        ],
+        correct: 1,
+        explanation: "Padding is the space between the content and the border. Margin is the outer space outside the border separating elements from neighbors."
+      },
+      {
+        question: "What does 'box-sizing: border-box;' do?",
+        options: [
+          "Removes all borders from the element",
+          "Includes padding and border within the element's total specified width and height",
+          "Adds a border to all child elements automatically",
+          "Forces margin to be calculated inside the box"
+        ],
+        correct: 1,
+        explanation: "With 'box-sizing: border-box;', the padding and border are included within the element's specified width and height, preventing unexpected overflow."
+      },
+      {
+        question: "Which relative CSS unit is based on the font-size of the root (&lt;html&gt;) element?",
+        options: [
+          "em",
+          "rem",
+          "px",
+          "vh"
+        ],
+        correct: 1,
+        explanation: "'rem' stands for 'root em'. It is relative to the root <html> element's font-size (default is usually 16px). 'em' is relative to the parent element."
+      },
+      {
+        question: "How do you horizontally center a block-level element that has a fixed width in CSS?",
+        options: [
+          "text-align: center;",
+          "margin: 0 auto;",
+          "align: center;",
+          "padding: auto;"
+        ],
+        correct: 1,
+        explanation: "'margin: 0 auto;' gives 0 top/bottom margin and automatically splits remaining horizontal space equally on the left and right, centering the element."
+      },
+      {
+        question: "Which CSS property is used to change the background color of an element?",
+        options: [
+          "color",
+          "bgcolor",
+          "background-color",
+          "fill-color"
+        ],
+        correct: 2,
+        explanation: "'background-color' sets the background color of an element. The 'color' property sets the text color."
+      },
+      {
+        question: "How do you create rounded corners on an element?",
+        options: [
+          "corner-style: round;",
+          "border-radius: 8px;",
+          "border-style: curved;",
+          "box-curve: 8px;"
+        ],
+        correct: 1,
+        explanation: "'border-radius' is the CSS property used to round the corners of an element's outer border edge."
+      },
+      {
+        question: "Which pseudo-class applies styles when the user moves their mouse pointer over an element?",
+        options: [
+          ":focus",
+          ":active",
+          ":hover",
+          ":visited"
+        ],
+        correct: 2,
+        explanation: "The :hover pseudo-class applies when the user hovers over an element with a pointing device. :focus applies when an element receives keyboard/input focus."
+      }
+    ];
+  </script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 3 Lessons — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="lesson-header">
+    <div class="container lesson-header-inner">
+      <div class="lesson-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 3 — CSS Fundamentals</p>
+      </div>
+      <div class="lesson-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="lesson-main">
+    <div class="container">
+      <div class="card progress-section">
+        <div class="progress-row">
+          <span>📚 Learning Progress</span>
+          <span id="lessonProgressPct">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="lessonProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card lesson-card">
+        <div class="lesson-meta" id="lessonNumber">Lesson 1 of 6</div>
+        <h2 id="lessonTitle">Lesson Title</h2>
+        <div class="lesson-body" id="lessonContent"></div>
+        <div class="lesson-nav">
+          <button class="btn btn-outline" id="prevBtn">← Previous Lesson</button>
+          <button class="btn btn-primary" id="nextBtn">Next Lesson →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 3;
+    var LESSONS = [
+      {
+        title: "Introduction to CSS",
+        content: `
+<h3>What is CSS?</h3>
+<p><strong>CSS</strong> stands for <em>Cascading Style Sheets</em>. It controls the <strong>visual presentation</strong> of HTML elements — colors, fonts, layout, spacing, animations, and more. Without CSS, every webpage would look like a plain text document.</p>
+<h3>Three Ways to Apply CSS</h3>
+<ul>
+  <li><strong>Inline CSS</strong> — Applied directly on an element with the <code>style</code> attribute. (Least preferred — hard to maintain.)</li>
+  <li><strong>Internal CSS</strong> — Written inside a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code>. Good for single-page prototypes.</li>
+  <li><strong>External CSS</strong> — Written in a separate <code>.css</code> file and linked with <code>&lt;link&gt;</code>. Best for real projects.</li>
+</ul>
+<div class="code-block">&lt;!-- 1. Inline --&gt;
+&lt;p style="color: red; font-size: 18px;"&gt;Red text&lt;/p&gt;
+
+&lt;!-- 2. Internal (inside &lt;head&gt;) --&gt;
+&lt;style&gt;
+  p { color: blue; }
+&lt;/style&gt;
+
+&lt;!-- 3. External (in &lt;head&gt;) --&gt;
+&lt;link rel="stylesheet" href="css/style.css" /&gt;</div>
+<h3>Basic CSS Syntax</h3>
+<p>A CSS rule has a <strong>selector</strong> (what to target) and a <strong>declaration block</strong> (properties and values):</p>
+<div class="code-block">selector {
+  property: value;
+  property: value;
+}
+
+/* Example */
+h1 {
+  color: #2563eb;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}</div>
+<div class="note-box"><strong>Best Practice:</strong> Always use an external stylesheet for projects. It keeps your HTML clean and lets you reuse styles across multiple pages.</div>
+`
+      },
+      {
+        title: "Selectors and Specificity",
+        content: `
+<h3>CSS Selectors</h3>
+<p>Selectors tell the browser <em>which HTML elements</em> to style. There are many selector types:</p>
+<h4>Basic Selectors</h4>
+<div class="code-block">/* Type selector — targets all &lt;p&gt; elements */
+p { color: gray; }
+
+/* Class selector — targets elements with class="card" */
+.card { background: white; border-radius: 8px; }
+
+/* ID selector — targets the element with id="header" */
+#header { background: navy; }
+
+/* Universal selector — targets ALL elements */
+* { box-sizing: border-box; }</div>
+<h4>Combinators</h4>
+<div class="code-block">/* Descendant: any &lt;p&gt; inside a &lt;div&gt; */
+div p { color: blue; }
+
+/* Child: direct &lt;li&gt; children of &lt;ul&gt; only */
+ul > li { list-style: square; }
+
+/* Adjacent sibling: &lt;p&gt; immediately after &lt;h2&gt; */
+h2 + p { font-weight: bold; }
+
+/* General sibling: all &lt;p&gt; after an &lt;h2&gt; */
+h2 ~ p { color: gray; }</div>
+<h4>Pseudo-Classes and Pseudo-Elements</h4>
+<div class="code-block">a:hover   { color: red; }       /* When mouse hovers over link */
+input:focus { outline: 2px solid blue; } /* When input is focused */
+li:first-child { font-weight: bold; }  /* First list item */
+li:last-child  { border-bottom: none; }/* Last list item */
+p::first-line  { font-size: 1.1em; }  /* First line of a paragraph */
+p::before { content: "→ "; }          /* Insert content before */</div>
+<h3>CSS Specificity</h3>
+<p>When multiple rules target the same element, the browser picks the most <strong>specific</strong> rule. Specificity order (highest to lowest):</p>
+<ol>
+  <li>Inline styles: <code>style="..."</code> (specificity: 1000)</li>
+  <li>ID selectors: <code>#id</code> (specificity: 100)</li>
+  <li>Class, attribute, pseudo-class: <code>.class</code>, <code>[type]</code>, <code>:hover</code> (specificity: 10)</li>
+  <li>Type selectors: <code>p</code>, <code>h1</code> (specificity: 1)</li>
+</ol>
+<div class="note-box"><strong>Tip:</strong> Avoid <code>!important</code> unless absolutely necessary — it breaks the natural specificity flow and makes CSS hard to debug.</div>
+`
+      },
+      {
+        title: "Colors, Backgrounds, and Units",
+        content: `
+<h3>CSS Color Values</h3>
+<p>CSS supports multiple color formats:</p>
+<div class="code-block">/* Named color */
+color: red;
+color: tomato;
+
+/* Hex color */
+color: #ff0000;          /* Red */
+color: #2563eb;          /* Blue */
+color: #fff;             /* White (shorthand) */
+
+/* RGB */
+color: rgb(255, 0, 0);  /* Red */
+color: rgb(37, 99, 235); /* Blue */
+
+/* RGBA (with alpha/transparency: 0=transparent, 1=opaque) */
+color: rgba(0, 0, 0, 0.5);  /* 50% transparent black */
+
+/* HSL (hue, saturation, lightness) */
+color: hsl(220, 82%, 53%);  /* A shade of blue */</div>
+<h3>CSS Units</h3>
+<ul>
+  <li><strong>px</strong> — Pixels. Fixed size, does not scale with user settings.</li>
+  <li><strong>rem</strong> — Relative to the root element's font size (default 16px). Best for font sizes and spacing.</li>
+  <li><strong>em</strong> — Relative to the parent element's font size. Compound if nested.</li>
+  <li><strong>%</strong> — Percentage of the parent element's size.</li>
+  <li><strong>vw / vh</strong> — 1% of the viewport width or height.</li>
+</ul>
+<div class="code-block">/* Fixed sizes */
+font-size: 16px;
+padding: 8px;
+
+/* Scalable / responsive sizes */
+font-size: 1rem;       /* 16px if root is 16px */
+padding: 1.5rem;       /* 24px */
+width: 50%;            /* Half the parent width */
+height: 100vh;         /* Full viewport height */</div>
+<h3>CSS Backgrounds</h3>
+<div class="code-block">div {
+  background-color: #f0f2f5;
+  background-image: url('pattern.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  /* Shorthand */
+  background: #f0f2f5 url('bg.jpg') no-repeat center/cover;
+
+  /* Gradient */
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+}</div>
+`
+      },
+      {
+        title: "Text and Typography",
+        content: `
+<h3>Font Properties</h3>
+<p>CSS gives you full control over how text looks.</p>
+<div class="code-block">p {
+  font-family: 'Segoe UI', Arial, sans-serif; /* Fallback stack */
+  font-size: 1rem;          /* 16px */
+  font-weight: 600;          /* 100-900; 400=normal, 700=bold */
+  font-style: italic;
+  line-height: 1.6;          /* Spacing between lines */
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;   /* Tighter letter spacing */
+}</div>
+<h3>Text Alignment and Decoration</h3>
+<div class="code-block">p {
+  text-align: left;    /* left | right | center | justify */
+  text-decoration: none;       /* Removes underlines from links */
+  text-decoration: underline;
+  text-transform: uppercase;   /* uppercase | lowercase | capitalize */
+  text-indent: 2rem;           /* Indent first line */
+}</div>
+<h3>Google Fonts</h3>
+<p>You can use free fonts from Google Fonts by adding a link in your <code>&lt;head&gt;</code>:</p>
+<div class="code-block">&lt;!-- In HTML &lt;head&gt; --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" /&gt;
+
+/* In CSS */
+body {
+  font-family: 'Inter', sans-serif;
+}</div>
+<h3>Font Shorthand</h3>
+<div class="code-block">/* font: style weight size/line-height family */
+p {
+  font: italic 400 1rem/1.6 'Segoe UI', sans-serif;
+}</div>
+<div class="note-box"><strong>Readability Tip:</strong> Use a line-height of 1.5–1.7 for body text. Avoid very long lines (max ~75 characters per line) for comfortable reading.</div>
+`
+      },
+      {
+        title: "Box Model, Margin, and Padding",
+        content: `
+<h3>The CSS Box Model</h3>
+<p>Every HTML element is a rectangular box. The <strong>box model</strong> describes the layers that make up an element's total size:</p>
+<ul>
+  <li><strong>Content</strong> — The actual text or image content.</li>
+  <li><strong>Padding</strong> — Space between the content and the border (inside).</li>
+  <li><strong>Border</strong> — A line surrounding the padding and content.</li>
+  <li><strong>Margin</strong> — Space outside the border, between this element and its neighbors.</li>
+</ul>
+<div class="code-block">div {
+  width: 200px;
+  height: 100px;
+  padding: 20px;      /* 20px on all four sides */
+  border: 2px solid black;
+  margin: 30px;
+}</div>
+<h3>box-sizing: border-box</h3>
+<p>By default, padding and border are <em>added</em> to the width. This is confusing! Use <code>box-sizing: border-box</code> to include padding and border inside the specified width:</p>
+<div class="code-block">/* Apply to all elements — recommended */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+div {
+  width: 200px;        /* Now this is the total size including padding+border */
+  padding: 20px;
+  border: 2px solid black;
+}</div>
+<h3>Padding and Margin Shorthand</h3>
+<div class="code-block">/* Four sides shorthand: top right bottom left */
+padding: 10px 20px 10px 20px;
+
+/* Two values: top+bottom, left+right */
+padding: 10px 20px;
+
+/* One value: all four sides */
+padding: 16px;
+
+/* Individual sides */
+margin-top: 1rem;
+margin-right: 0;
+margin-bottom: 1.5rem;
+margin-left: 0;
+
+/* Centering a block element horizontally */
+margin: 0 auto;</div>
+<div class="note-box"><strong>Tip:</strong> Margin collapse: Top and bottom margins between adjacent block elements merge into one margin (the larger of the two). This does not happen with padding.</div>
+`
+      },
+      {
+        title: "Borders and Basic Styling",
+        content: `
+<h3>CSS Borders</h3>
+<p>The <code>border</code> property adds a line around an element. It takes three values: width, style, and color.</p>
+<div class="code-block">div {
+  border: 2px solid #2563eb;      /* Solid blue border */
+  border: 1px dashed #ccc;        /* Dashed gray border */
+  border: 3px double black;       /* Double line */
+  border: none;                   /* No border */
+}
+
+/* Individual sides */
+border-top: 4px solid red;
+border-right: none;
+border-bottom: 1px solid #eee;
+border-left: 4px solid blue;</div>
+<h3>Border Radius (Rounded Corners)</h3>
+<div class="code-block">/* All corners */
+border-radius: 8px;
+
+/* Perfect circle */
+border-radius: 50%;
+
+/* Individual corners: top-left top-right bottom-right bottom-left */
+border-radius: 12px 12px 0 0;   /* Rounded top corners only */</div>
+<h3>Box Shadows</h3>
+<div class="code-block">/* box-shadow: x-offset y-offset blur spread color */
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+/* Multiple shadows separated by commas */
+box-shadow:
+  0 1px 3px rgba(0,0,0,.12),
+  0 4px 16px rgba(0,0,0,.08);</div>
+<h3>Outline vs Border</h3>
+<p><code>outline</code> is similar to border but does not take up space in the layout. It is commonly used for focus styles.</p>
+<div class="code-block">button:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px; /* Gap between element and outline */
+}
+
+/* Remove default browser outline only if you add a custom one */
+button:focus { outline: none; /* Do NOT do this alone — harms keyboard users! */ }</div>
+<div class="note-box"><strong>Accessibility:</strong> Never remove focus outlines without replacing them. Keyboard users rely on the visible focus ring to navigate the page.</div>
+`
+      }
+    ];
+  </script>
+  <script src="js/lessons.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Master — Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-page">
+
+  <div class="login-box">
+    <div class="login-logo">
+      <span class="logo-icon">🎓</span>
+      <h1>Frontend Master</h1>
+      <p>An Interactive Level-Based Frontend Learning System</p>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="studentName">Full Name</label>
+        <input
+          type="text"
+          id="studentName"
+          placeholder="e.g. Priya Sharma"
+          autocomplete="name"
+          maxlength="60"
+        />
+        <div class="field-error" id="nameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="studentUsername">Username</label>
+        <input
+          type="text"
+          id="studentUsername"
+          placeholder="e.g. priya_2025 (3–20 chars)"
+          autocomplete="username"
+          maxlength="20"
+        />
+        <div class="field-error" id="usernameError"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary login-btn" id="loginBtn">
+        🚀 Start Learning
+      </button>
+    </form>
+
+    <p class="login-note">
+      ⚠️ This system uses your browser's LocalStorage to save progress.<br />
+      It is <strong>not a secure authentication system</strong> — suitable for college demo only.
+    </p>
+
+    <div style="text-align: center; margin-top: 1.2rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;">
+      <a href="project-overview.html" style="color: var(--primary); font-weight: 600; font-size: 0.92rem; text-decoration: underline;">
+        📄 Project Overview &amp; Abstract (Slide 1) →
+      </a>
+    </div>
+  </div>
+
+  <!-- Load progress helpers first, then login logic -->
+  <script src="js/progress.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

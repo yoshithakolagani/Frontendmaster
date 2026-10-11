@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 2 Quiz — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <div class="quiz-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 2 — Advanced HTML &amp; Accessibility</p>
+      </div>
+      <div class="quiz-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="quiz-main">
+    <div class="container">
+      <div class="card quiz-info-card">
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Question</div>
+          <div class="quiz-info-value" id="questionCounter">1 / 10</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Score</div>
+          <div class="quiz-info-value" id="scoreCounter">0</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Time</div>
+          <div class="quiz-info-value" id="timerDisplay">10:00</div>
+        </div>
+      </div>
+      <div class="card quiz-progress-section">
+        <div class="progress-wrap">
+          <div class="progress-fill" id="quizProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card question-card">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="explanation-box" id="explanationBox"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 2;
+    var QUIZ_DATA = [
+      {
+        question: "Which HTML5 element represents the primary navigation links of a page?",
+        options: ["&lt;menu&gt;", "&lt;nav&gt;", "&lt;links&gt;", "&lt;header&gt;"],
+        correct: 1,
+        explanation: "<nav> is the semantic HTML5 element for navigation links. Using it tells browsers and screen readers that this section contains the page's main navigation."
+      },
+      {
+        question: "Which element should be used for the main content area of a page (there should only be one per page)?",
+        options: ["&lt;content&gt;", "&lt;section&gt;", "&lt;main&gt;", "&lt;article&gt;"],
+        correct: 2,
+        explanation: "<main> identifies the dominant content of the page. There should be only one <main> per page. Screen readers use it to skip directly to the main content."
+      },
+      {
+        question: "What does the 'alt' attribute in the &lt;img&gt; tag provide?",
+        options: [
+          "Alternative styling for the image",
+          "The image dimensions",
+          "A text description for screen readers and when the image fails to load",
+          "An alternative image URL"
+        ],
+        correct: 2,
+        explanation: "The alt attribute provides a text alternative to the image. Screen readers read it aloud for visually impaired users. It also displays when the image cannot load."
+      },
+      {
+        question: "Which HTML5 attribute makes a form input mandatory before submission?",
+        options: ["mandatory", "required", "validate", "needed"],
+        correct: 1,
+        explanation: "The required attribute tells the browser to prevent form submission if that field is empty. It is part of HTML5's built-in form validation."
+      },
+      {
+        question: "What does ARIA stand for?",
+        options: [
+          "Accessible Rich Internet Applications",
+          "Advanced Responsive Interface Attributes",
+          "Automated Rendering Interface API",
+          "Accessible Resource Integration API"
+        ],
+        correct: 0,
+        explanation: "ARIA stands for Accessible Rich Internet Applications. It is a set of HTML attributes defined by the W3C to make dynamic web content more accessible to users of assistive technologies."
+      },
+      {
+        question: "Which HTML element is best used for a self-contained piece of content such as a blog post or news article?",
+        options: ["&lt;section&gt;", "&lt;div&gt;", "&lt;article&gt;", "&lt;aside&gt;"],
+        correct: 2,
+        explanation: "<article> represents a self-contained, independently distributable piece of content — like a blog post, news article, or forum post. <section> groups thematically related content."
+      },
+      {
+        question: "Which ARIA attribute is used to hide decorative elements from screen readers?",
+        options: ["aria-hidden='true'", "aria-visible='false'", "aria-disabled='true'", "aria-label='none'"],
+        correct: 0,
+        explanation: "aria-hidden='true' hides an element from the accessibility tree, so screen readers skip it. Use this for decorative icons or images that add no informational value."
+      },
+      {
+        question: "What is the purpose of the &lt;label&gt; element in forms?",
+        options: [
+          "It adds a title above the form",
+          "It groups multiple inputs together",
+          "It provides an accessible text description for a form input",
+          "It submits the form on click"
+        ],
+        correct: 2,
+        explanation: "<label> provides a text description for a form input. When the for attribute matches the input's id, clicking the label focuses the input, improving usability and accessibility."
+      },
+      {
+        question: "Which HTML element represents a thematic section of content, usually with a heading?",
+        options: ["&lt;article&gt;", "&lt;div&gt;", "&lt;aside&gt;", "&lt;section&gt;"],
+        correct: 3,
+        explanation: "<section> represents a thematic grouping of content, usually with a heading. Unlike <div>, it conveys semantic meaning. Use it to divide a page into distinct topic areas."
+      },
+      {
+        question: "Which attribute should you add to a link opened with target='_blank' to prevent a security vulnerability?",
+        options: [
+          "rel='noopener noreferrer'",
+          "secure='true'",
+          "rel='safe'",
+          "crossorigin='anonymous'"
+        ],
+        correct: 0,
+        explanation: "rel='noopener noreferrer' prevents the newly opened page from being able to access the original page via window.opener, protecting against a security attack called tab-napping."
+      }
+    ];
+  </script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

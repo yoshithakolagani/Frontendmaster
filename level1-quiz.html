@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 1 Quiz — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <div class="quiz-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 1 — HTML Fundamentals</p>
+      </div>
+      <div class="quiz-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="quiz-main">
+    <div class="container">
+
+      <!-- Quiz info bar -->
+      <div class="card quiz-info-card">
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Question</div>
+          <div class="quiz-info-value" id="questionCounter">1 / 10</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Score</div>
+          <div class="quiz-info-value" id="scoreCounter">0</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Time</div>
+          <div class="quiz-info-value" id="timerDisplay">10:00</div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="card quiz-progress-section">
+        <div class="progress-wrap">
+          <div class="progress-fill" id="quizProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Question card -->
+      <div class="card question-card">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="explanation-box" id="explanationBox"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 1;
+    var QUIZ_DATA = [
+      {
+        question: "What does HTML stand for?",
+        options: [
+          "Hyper Text Markup Language",
+          "High-level Text Manipulation Language",
+          "Hyperlink and Text Marking Language",
+          "HyperText Machine Language"
+        ],
+        correct: 0,
+        explanation: "HTML stands for HyperText Markup Language. It is the standard language used to create and structure web pages using elements called tags."
+      },
+      {
+        question: "Which HTML element is placed at the very beginning of every HTML5 document?",
+        options: [
+          "&lt;html&gt;",
+          "&lt;!DOCTYPE html&gt;",
+          "&lt;head&gt;",
+          "&lt;meta charset='UTF-8'&gt;"
+        ],
+        correct: 1,
+        explanation: "<!DOCTYPE html> is the document type declaration and must be the very first line of an HTML5 document. It tells the browser which version of HTML is being used."
+      },
+      {
+        question: "Which tag creates the largest heading in HTML?",
+        options: [
+          "&lt;h6&gt;",
+          "&lt;heading&gt;",
+          "&lt;h1&gt;",
+          "&lt;big&gt;"
+        ],
+        correct: 2,
+        explanation: "The <h1> tag creates the largest and most important heading. HTML headings range from <h1> (largest) to <h6> (smallest). You should have only one <h1> per page for good SEO."
+      },
+      {
+        question: "What is the correct HTML for adding a hyperlink?",
+        options: [
+          "&lt;link href='https://example.com'&gt;Visit&lt;/link&gt;",
+          "&lt;a href='https://example.com'&gt;Visit&lt;/a&gt;",
+          "&lt;a url='https://example.com'&gt;Visit&lt;/a&gt;",
+          "&lt;hyperlink src='https://example.com'&gt;Visit&lt;/hyperlink&gt;"
+        ],
+        correct: 1,
+        explanation: "The <a> (anchor) tag creates a hyperlink. The href attribute specifies the destination URL. Example: <a href='https://example.com'>Visit</a>"
+      },
+      {
+        question: "Which attribute is REQUIRED when using the &lt;img&gt; tag for accessibility?",
+        options: [
+          "src",
+          "width",
+          "alt",
+          "title"
+        ],
+        correct: 2,
+        explanation: "The alt attribute provides a text description of the image. It is essential for screen readers used by visually impaired users, and it displays when the image fails to load. Both src and alt are required."
+      },
+      {
+        question: "Which HTML tag creates an unordered (bulleted) list?",
+        options: [
+          "&lt;ol&gt;",
+          "&lt;list&gt;",
+          "&lt;dl&gt;",
+          "&lt;ul&gt;"
+        ],
+        correct: 3,
+        explanation: "<ul> creates an unordered (bulleted) list. <ol> creates an ordered (numbered) list. Both use <li> for each list item."
+      },
+      {
+        question: "Which section of an HTML document contains meta information such as the page title and links to stylesheets?",
+        options: [
+          "&lt;body&gt;",
+          "&lt;header&gt;",
+          "&lt;head&gt;",
+          "&lt;main&gt;"
+        ],
+        correct: 2,
+        explanation: "The <head> section contains metadata that is not displayed on the page: title, character encoding, viewport settings, and links to external CSS and JS files."
+      },
+      {
+        question: "What is the correct way to create a text input in a form?",
+        options: [
+          "&lt;textbox type='input'&gt;",
+          "&lt;text&gt;&lt;/text&gt;",
+          "&lt;input type='text' /&gt;",
+          "&lt;field type='text' /&gt;"
+        ],
+        correct: 2,
+        explanation: "<input type='text'> creates a single-line text input field. The type attribute determines what kind of data the input accepts."
+      },
+      {
+        question: "In an HTML table, which tag defines a header cell?",
+        options: [
+          "&lt;td&gt;",
+          "&lt;th&gt;",
+          "&lt;thead&gt;",
+          "&lt;hd&gt;"
+        ],
+        correct: 1,
+        explanation: "<th> defines a table header cell. It is bold and centered by default. <td> defines a regular data cell. <thead> is the container for the header row(s)."
+      },
+      {
+        question: "Which attribute of the &lt;a&gt; tag opens a link in a new browser tab?",
+        options: [
+          "href='_newtab'",
+          "open='new'",
+          "target='_blank'",
+          "tab='new'"
+        ],
+        correct: 2,
+        explanation: "The target='_blank' attribute opens the linked page in a new browser tab. Best practice: also add rel='noopener noreferrer' to prevent security vulnerabilities."
+      }
+    ];
+  </script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 4 Quiz — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <div class="quiz-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 4 — Advanced CSS</p>
+      </div>
+      <div class="quiz-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="quiz-main">
+    <div class="container">
+      <div class="card quiz-info-card">
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Question</div>
+          <div class="quiz-info-value" id="questionCounter">1 / 10</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Score</div>
+          <div class="quiz-info-value" id="scoreCounter">0</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Time</div>
+          <div class="quiz-info-value" id="timerDisplay">10:00</div>
+        </div>
+      </div>
+      <div class="card quiz-progress-section">
+        <div class="progress-wrap">
+          <div class="progress-fill" id="quizProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card question-card">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="explanation-box" id="explanationBox"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 4;
+    var QUIZ_DATA = [
+      {
+        question: "Which CSS property initiates a Flexbox formatting context on a parent element?",
+        options: [
+          "flex: 1;",
+          "display: flex;",
+          "flex-direction: row;",
+          "layout: flexbox;"
+        ],
+        correct: 1,
+        explanation: "Applying 'display: flex;' to a container turns it into a flex container and all its direct children into flex items."
+      },
+      {
+        question: "In Flexbox, which property aligns flex items along the main axis?",
+        options: [
+          "align-items",
+          "justify-content",
+          "align-content",
+          "flex-pack"
+        ],
+        correct: 1,
+        explanation: "'justify-content' aligns items along the main axis. 'align-items' aligns items along the perpendicular cross axis."
+      },
+      {
+        question: "How do you vertically and horizontally center an item inside a flex container?",
+        options: [
+          "justify-content: center; align-items: center;",
+          "align-content: middle; justify-items: middle;",
+          "margin: center; text-align: center;",
+          "display: center;"
+        ],
+        correct: 0,
+        explanation: "Setting 'display: flex;' along with 'justify-content: center;' (main axis) and 'align-items: center;' (cross axis) perfectly centers children."
+      },
+      {
+        question: "What unit is unique to CSS Grid and represents a fraction of the free available space?",
+        options: [
+          "em",
+          "%",
+          "fr",
+          "rem"
+        ],
+        correct: 2,
+        explanation: "The 'fr' (fraction) unit represents a fractional share of the remaining available space in a CSS Grid container."
+      },
+      {
+        question: "Which CSS Grid property defines the number and widths of columns in a grid container?",
+        options: [
+          "grid-template-columns",
+          "grid-columns-count",
+          "grid-column-template",
+          "grid-auto-flow"
+        ],
+        correct: 0,
+        explanation: "'grid-template-columns' defines line names and track sizing functions of the grid columns (e.g. repeat(3, 1fr))."
+      },
+      {
+        question: "What is the purpose of CSS media queries?",
+        options: [
+          "To stream video and audio files smoothly",
+          "To apply styles conditionally based on device characteristics like screen width",
+          "To compress and optimize CSS files",
+          "To connect CSS to external JavaScript APIs"
+        ],
+        correct: 1,
+        explanation: "Media queries allow developers to create responsive designs by applying CSS rules depending on viewport size, orientation, and resolution."
+      },
+      {
+        question: "In responsive web design, what does a 'mobile-first' strategy mean?",
+        options: [
+          "Building only mobile apps instead of websites",
+          "Writing base styles for smaller mobile screens first, then using min-width media queries for larger displays",
+          "Hiding all content until a mobile device is detected",
+          "Writing desktop styles first and downscaling everything"
+        ],
+        correct: 1,
+        explanation: "Mobile-first means writing standard CSS for small screens first, then adding progressive enhancements with 'min-width' media queries as screens grow wider."
+      },
+      {
+        question: "Which CSS property provides smooth transitions between state changes (like hovering)?",
+        options: [
+          "transition",
+          "transform",
+          "animation-play-state",
+          "filter"
+        ],
+        correct: 0,
+        explanation: "The 'transition' property allows you to change property values smoothly over a specified duration (e.g., transition: background 0.3s ease;)."
+      },
+      {
+        question: "Which CSS transform function moves an element 20 pixels downwards?",
+        options: [
+          "transform: rotate(20px);",
+          "transform: scale(20px);",
+          "transform: translateY(20px);",
+          "transform: skewY(20px);"
+        ],
+        correct: 2,
+        explanation: "'translateY(20px)' translates (moves) the element along the vertical Y-axis by 20 pixels."
+      },
+      {
+        question: "What CSS at-rule is used to create named animation keyframes with customizable stages?",
+        options: [
+          "@keyframes",
+          "@animation",
+          "@transitions",
+          "@keyframes-rule"
+        ],
+        correct: 0,
+        explanation: "The '@keyframes' at-rule lets you define animation intermediate steps (using 'from/to' or percentages like 0%, 50%, 100%) that an element animates through."
+      }
+    ];
+  </script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

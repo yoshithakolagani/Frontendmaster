@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 6 Quiz — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <div class="quiz-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 6 — Advanced JavaScript</p>
+      </div>
+      <div class="quiz-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="quiz-main">
+    <div class="container">
+      <div class="card quiz-info-card">
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Question</div>
+          <div class="quiz-info-value" id="questionCounter">1 / 10</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Score</div>
+          <div class="quiz-info-value" id="scoreCounter">0</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Time</div>
+          <div class="quiz-info-value" id="timerDisplay">10:00</div>
+        </div>
+      </div>
+      <div class="card quiz-progress-section">
+        <div class="progress-wrap">
+          <div class="progress-fill" id="quizProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card question-card">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="explanation-box" id="explanationBox"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 6;
+    var QUIZ_DATA = [
+      {
+        question: "Which array method creates a new array by transforming every element according to a callback function?",
+        options: [
+          "forEach()",
+          "map()",
+          "filter()",
+          "reduce()"
+        ],
+        correct: 1,
+        explanation: "'map()' calls a provided callback function on every element in the calling array and returns a new array with the transformed values."
+      },
+      {
+        question: "Which array method returns a new array containing only elements that satisfy a boolean condition?",
+        options: [
+          "filter()",
+          "find()",
+          "some()",
+          "includes()"
+        ],
+        correct: 0,
+        explanation: "'filter()' creates a shallow copy of a portion of an array, filtered down to just the elements that pass the test provided by the callback."
+      },
+      {
+        question: "What does the spread operator (...) do when applied to an array like [...items]?",
+        options: [
+          "Deletes all items in the array",
+          "Expands the elements of the iterable into individual elements, creating a shallow copy",
+          "Sorts the elements in ascending order",
+          "Converts the array into a JSON string"
+        ],
+        correct: 1,
+        explanation: "The spread operator (...) expands an iterable (like an array or object) into individual elements, making it ideal for copying and combining arrays."
+      },
+      {
+        question: "Which DOM method selects the FIRST element in the document matching a specified CSS selector?",
+        options: [
+          "document.querySelectorAll()",
+          "document.getElementById()",
+          "document.querySelector()",
+          "document.getElementsByClassName()"
+        ],
+        correct: 2,
+        explanation: "'document.querySelector()' returns the first Element within the document that matches the specified selector or group of selectors."
+      },
+      {
+        question: "What does 'event.preventDefault()' do when called inside a form 'submit' event handler?",
+        options: [
+          "Deletes the form inputs completely",
+          "Prevents the default browser action of reloading/navigating the page on submission",
+          "Stops all other event listeners from ever firing",
+          "Validates all password fields automatically"
+        ],
+        correct: 1,
+        explanation: "'event.preventDefault()' cancels the default action of the event, such as preventing a browser page reload when a form is submitted."
+      },
+      {
+        question: "What are the three possible states of a JavaScript Promise?",
+        options: [
+          "Start, Running, Finished",
+          "Pending, Fulfilled, Rejected",
+          "Open, Locked, Closed",
+          "Waiting, Success, Failure"
+        ],
+        correct: 1,
+        explanation: "A Promise is in one of three states: pending (initial state), fulfilled (operation completed successfully), or rejected (operation failed)."
+      },
+      {
+        question: "What does placing the 'await' keyword before an asynchronous operation do?",
+        options: [
+          "Causes the entire browser window to freeze until the user clicks",
+          "Pauses execution of the enclosing async function until the Promise settles (resolves or rejects)",
+          "Cancels the promise if it takes more than 5 seconds",
+          "Converts the function into a synchronous thread"
+        ],
+        correct: 1,
+        explanation: "The 'await' operator pauses the execution of its surrounding async function until the Promise resolves or rejects, returning the resolved value."
+      },
+      {
+        question: "Which method converts a valid JSON string into a JavaScript object?",
+        options: [
+          "JSON.stringify()",
+          "JSON.parse()",
+          "JSON.toObject()",
+          "JSON.encode()"
+        ],
+        correct: 1,
+        explanation: "'JSON.parse()' constructs the JavaScript value or object described by a JSON string. 'JSON.stringify()' converts a JS object into a JSON string."
+      },
+      {
+        question: "What is a closure in JavaScript?",
+        options: [
+          "A method that closes browser windows",
+          "A tag used to close HTML elements",
+          "A function that retains access to its lexical scope even when executed outside that scope",
+          "A syntax error caused by missing brackets"
+        ],
+        correct: 2,
+        explanation: "A closure is the combination of a function bundled together with references to its surrounding state (lexical environment), allowing it to access outer variables even after the outer function has returned."
+      },
+      {
+        question: "Which keyword must precede a function declaration if you wish to use the 'await' keyword inside it?",
+        options: [
+          "promise",
+          "async",
+          "defer",
+          "sync"
+        ],
+        correct: 1,
+        explanation: "The 'await' keyword can only be used inside functions declared with the 'async' keyword (or in top-level modules)."
+      }
+    ];
+  </script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

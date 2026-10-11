@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 5 Lessons — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="lesson-header">
+    <div class="container lesson-header-inner">
+      <div class="lesson-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 5 — JavaScript Fundamentals</p>
+      </div>
+      <div class="lesson-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="lesson-main">
+    <div class="container">
+      <div class="card progress-section">
+        <div class="progress-row">
+          <span>📚 Learning Progress</span>
+          <span id="lessonProgressPct">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="lessonProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card lesson-card">
+        <div class="lesson-meta" id="lessonNumber">Lesson 1 of 6</div>
+        <h2 id="lessonTitle">Lesson Title</h2>
+        <div class="lesson-body" id="lessonContent"></div>
+        <div class="lesson-nav">
+          <button class="btn btn-outline" id="prevBtn">← Previous Lesson</button>
+          <button class="btn btn-primary" id="nextBtn">Next Lesson →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 5;
+    var LESSONS = [
+      {
+        title: "Introduction to JavaScript",
+        content: `
+<h3>What is JavaScript?</h3>
+<p>JavaScript is a <strong>programming language</strong> that adds interactivity and dynamic behavior to webpages. While HTML provides structure and CSS provides style, JavaScript provides <em>functionality</em>.</p>
+<ul>
+  <li>It runs directly in the browser — no installation needed.</li>
+  <li>It can respond to user events (clicks, key presses, form submissions).</li>
+  <li>It can update the page content without reloading.</li>
+  <li>It can make requests to servers and process data.</li>
+</ul>
+<h3>Adding JavaScript to a Page</h3>
+<div class="code-block">&lt;!-- 1. Inline in the HTML (not recommended for large code) --&gt;
+&lt;button onclick="alert('Hello!')"&gt;Click Me&lt;/button&gt;
+
+&lt;!-- 2. Internal script block (in &lt;head&gt; or before &lt;/body&gt;) --&gt;
+&lt;script&gt;
+  console.log("Hello from JavaScript!");
+&lt;/script&gt;
+
+&lt;!-- 3. External file (best practice) --&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;</div>
+<h3>Your First JavaScript Code</h3>
+<div class="code-block">// This is a single-line comment
+/* This is a
+   multi-line comment */
+
+// Display a message in the browser console
+console.log("Hello, JavaScript!");
+
+// Display a popup dialog
+alert("Welcome to Frontend Master!");
+
+// Ask the user for input
+var name = prompt("What is your name?");
+console.log("Hello, " + name + "!");</div>
+<div class="note-box"><strong>How to Open the Console:</strong> Press F12 in your browser → click "Console". This is where <code>console.log()</code> output appears and where you can see error messages.</div>
+`
+      },
+      {
+        title: "Variables and Data Types",
+        content: `
+<h3>Variables in JavaScript</h3>
+<p>A variable is a named container that stores a value. JavaScript has three keywords for declaring variables:</p>
+<div class="code-block">// var — original keyword, function-scoped (older style)
+var studentName = "Priya";
+
+// let — block-scoped, value can change (preferred for variables)
+let score = 0;
+score = 42; // Can reassign
+
+// const — block-scoped, value cannot be reassigned (preferred for constants)
+const MAX_SCORE = 100;
+// MAX_SCORE = 200; // Error! Cannot reassign a const.</div>
+<div class="note-box"><strong>Modern Best Practice:</strong> Use <code>const</code> by default. Use <code>let</code> only when you need to reassign the variable. Avoid <code>var</code> in new code.</div>
+<h3>JavaScript Data Types</h3>
+<ul>
+  <li><strong>String</strong> — Text in single, double, or backtick quotes.</li>
+  <li><strong>Number</strong> — Integer or decimal numbers.</li>
+  <li><strong>Boolean</strong> — <code>true</code> or <code>false</code>.</li>
+  <li><strong>undefined</strong> — A variable declared but not assigned a value.</li>
+  <li><strong>null</strong> — Intentional absence of a value.</li>
+  <li><strong>Object</strong> — A collection of key-value pairs.</li>
+  <li><strong>Array</strong> — An ordered list of values.</li>
+</ul>
+<div class="code-block">let name   = "Alice";          // String
+let age    = 25;               // Number
+let price  = 9.99;             // Number (decimal)
+let isLoggedIn = true;         // Boolean
+let data   = null;             // null
+let result;                    // undefined (not assigned yet)
+
+// Check the type of any value
+console.log(typeof name);      // "string"
+console.log(typeof age);       // "number"
+console.log(typeof isLoggedIn);// "boolean"</div>
+<h3>Template Literals (String Interpolation)</h3>
+<div class="code-block">const userName = "Priya";
+const level = 3;
+
+// Old way (string concatenation):
+console.log("Hello, " + userName + "! You are on level " + level + ".");
+
+// Modern way (template literal with backticks):
+console.log(\`Hello, \${userName}! You are on level \${level}.\`);</div>
+`
+      },
+      {
+        title: "Operators and Conditions",
+        content: `
+<h3>Arithmetic Operators</h3>
+<div class="code-block">let a = 10, b = 3;
+
+console.log(a + b);  // 13  (addition)
+console.log(a - b);  // 7   (subtraction)
+console.log(a * b);  // 30  (multiplication)
+console.log(a / b);  // 3.33 (division)
+console.log(a % b);  // 1   (remainder / modulo)
+console.log(a ** b); // 1000 (exponentiation: 10³)</div>
+<h3>Comparison Operators</h3>
+<div class="code-block">console.log(5 === 5);   // true  (strict equal: same value AND type)
+console.log(5 === "5"); // false (different types)
+console.log(5 == "5");  // true  (loose equal: type coercion — avoid this!)
+console.log(5 !== 3);   // true  (not equal)
+console.log(10 > 5);    // true
+console.log(10 >= 10);  // true
+console.log(3 < 5);     // true</div>
+<div class="note-box"><strong>Always use <code>===</code></strong> (triple equals) instead of <code>==</code>. The triple equals checks both value and type, preventing unexpected behavior.</div>
+<h3>Logical Operators</h3>
+<div class="code-block">console.log(true && true);   // true  (AND — both must be true)
+console.log(true && false);  // false
+console.log(true || false);  // true  (OR — at least one must be true)
+console.log(false || false); // false
+console.log(!true);          // false (NOT — flips the value)</div>
+<h3>if / else if / else</h3>
+<div class="code-block">let score = 85;
+
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 80) {
+  console.log("Grade: B");
+} else if (score >= 70) {
+  console.log("Grade: C");
+} else {
+  console.log("Grade: F");
+}</div>
+<h3>Ternary Operator</h3>
+<div class="code-block">// condition ? valueIfTrue : valueIfFalse
+let passed = score >= 60 ? "Pass" : "Fail";
+console.log(passed); // "Pass"</div>
+`
+      },
+      {
+        title: "Loops",
+        content: `
+<h3>for Loop</h3>
+<p>The <code>for</code> loop repeats a block of code a known number of times. It has three parts: initialization, condition, and update.</p>
+<div class="code-block">// Print numbers 1 through 5
+for (let i = 1; i <= 5; i++) {
+  console.log("Number: " + i);
+}
+// Output: Number: 1, Number: 2, ... Number: 5</div>
+<h3>while Loop</h3>
+<p>The <code>while</code> loop runs as long as its condition is true. Use it when you don't know in advance how many times to loop.</p>
+<div class="code-block">let count = 1;
+
+while (count <= 5) {
+  console.log("Count: " + count);
+  count++; // Increment — IMPORTANT! Without this, infinite loop!
+}</div>
+<h3>do…while Loop</h3>
+<p>Runs the code block at least once, then checks the condition.</p>
+<div class="code-block">let userInput;
+do {
+  userInput = prompt("Enter a number greater than 0:");
+} while (userInput <= 0);
+console.log("You entered: " + userInput);</div>
+<h3>for…of Loop (Arrays)</h3>
+<div class="code-block">const fruits = ["apple", "banana", "mango"];
+
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+// apple, banana, mango</div>
+<h3>break and continue</h3>
+<div class="code-block">for (let i = 0; i < 10; i++) {
+  if (i === 3) continue;  // Skip 3, move to next iteration
+  if (i === 7) break;     // Stop the loop entirely when i is 7
+  console.log(i);
+}
+// Output: 0 1 2 4 5 6</div>
+<div class="note-box"><strong>Infinite Loop Warning:</strong> Always ensure your loop's condition will eventually become false. A loop that never ends will freeze your browser tab.</div>
+`
+      },
+      {
+        title: "Functions",
+        content: `
+<h3>What is a Function?</h3>
+<p>A function is a reusable block of code that performs a specific task. Instead of writing the same code multiple times, define it once in a function and call it whenever needed.</p>
+<h3>Declaring and Calling a Function</h3>
+<div class="code-block">// Function declaration
+function greet(name) {
+  console.log("Hello, " + name + "!");
+}
+
+// Calling the function
+greet("Priya");   // Hello, Priya!
+greet("Arjun");   // Hello, Arjun!</div>
+<h3>Parameters and Return Values</h3>
+<div class="code-block">// Function with two parameters and a return value
+function add(a, b) {
+  return a + b;  // return sends the result back to the caller
+}
+
+let result = add(5, 3);
+console.log(result); // 8
+
+// Default parameter values
+function greetUser(name = "Student") {
+  return \`Welcome, \${name}!\`;
+}
+console.log(greetUser());        // Welcome, Student!
+console.log(greetUser("Priya")); // Welcome, Priya!</div>
+<h3>Function Expressions</h3>
+<div class="code-block">// Store a function in a variable
+const multiply = function(a, b) {
+  return a * b;
+};
+
+console.log(multiply(4, 5)); // 20</div>
+<h3>Arrow Functions (ES6)</h3>
+<p>Arrow functions are a shorter syntax for writing functions. They are commonly used in modern JavaScript.</p>
+<div class="code-block">// Regular function
+function square(n) { return n * n; }
+
+// Arrow function (equivalent)
+const square = (n) => n * n;
+
+// Arrow function with multiple statements
+const checkAge = (age) => {
+  if (age >= 18) {
+    return "Adult";
+  }
+  return "Minor";
+};
+
+console.log(square(5));       // 25
+console.log(checkAge(20));    // Adult</div>
+<div class="note-box"><strong>Scope:</strong> Variables declared with <code>let</code> or <code>const</code> inside a function are local to that function and cannot be accessed outside it.</div>
+`
+      },
+      {
+        title: "Arrays and Basic Objects",
+        content: `
+<h3>JavaScript Arrays</h3>
+<p>An array is an ordered list of values. Each value has an index starting from 0.</p>
+<div class="code-block">const fruits = ["apple", "banana", "mango", "orange"];
+
+// Access by index
+console.log(fruits[0]);  // "apple"
+console.log(fruits[2]);  // "mango"
+console.log(fruits.length); // 4
+
+// Modify an element
+fruits[1] = "grape";
+console.log(fruits); // ["apple", "grape", "mango", "orange"]</div>
+<h3>Common Array Methods</h3>
+<div class="code-block">const nums = [3, 1, 4, 1, 5, 9, 2, 6];
+
+nums.push(7);          // Add to end: [..., 7]
+nums.pop();            // Remove from end
+nums.unshift(0);       // Add to start: [0, ...]
+nums.shift();          // Remove from start
+
+nums.includes(5);      // true — checks if value exists
+nums.indexOf(4);       // 2 — returns index of first match
+
+// Slice: returns a portion (does NOT modify original)
+const portion = nums.slice(1, 4); // Elements at index 1, 2, 3
+
+// Join elements into a string
+const joined = nums.join(", ");
+console.log(joined);</div>
+<h3>JavaScript Objects</h3>
+<p>An object stores data as <strong>key-value pairs</strong>. Objects are used to represent real-world things.</p>
+<div class="code-block">const student = {
+  name: "Priya Sharma",
+  age: 20,
+  level: 5,
+  isActive: true
+};
+
+// Access properties
+console.log(student.name);       // "Priya Sharma" (dot notation)
+console.log(student["age"]);     // 20 (bracket notation)
+
+// Add or update a property
+student.score = 95;
+student.level = 6;
+
+// Delete a property
+delete student.isActive;
+
+// Loop over all keys
+for (const key in student) {
+  console.log(key + ": " + student[key]);
+}</div>
+<div class="note-box"><strong>Arrays vs Objects:</strong> Use arrays for ordered lists of similar items (e.g., a list of scores). Use objects to describe a single entity with named properties (e.g., a student record).</div>
+`
+      }
+    ];
+  </script>
+  <script src="js/lessons.js"></script>
+</body>
+</html>

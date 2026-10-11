@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 6 Lessons — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="lesson-header">
+    <div class="container lesson-header-inner">
+      <div class="lesson-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 6 — Advanced JavaScript</p>
+      </div>
+      <div class="lesson-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="lesson-main">
+    <div class="container">
+      <div class="card progress-section">
+        <div class="progress-row">
+          <span>📚 Learning Progress</span>
+          <span id="lessonProgressPct">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="lessonProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card lesson-card">
+        <div class="lesson-meta" id="lessonNumber">Lesson 1 of 6</div>
+        <h2 id="lessonTitle">Lesson Title</h2>
+        <div class="lesson-body" id="lessonContent"></div>
+        <div class="lesson-nav">
+          <button class="btn btn-outline" id="prevBtn">← Previous Lesson</button>
+          <button class="btn btn-primary" id="nextBtn">Next Lesson →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 6;
+    var LESSONS = [
+      {
+        title: "Introduction to Advanced JavaScript",
+        content: `
+<h3>Moving Beyond the Basics</h3>
+<p>In Level 5, you learned the core JavaScript syntax: variables, conditions, loops, functions, arrays, and objects. In Level 6, you will learn more powerful patterns that are essential for real-world web development:</p>
+<ul>
+  <li><strong>Array methods</strong> — Process and transform data elegantly.</li>
+  <li><strong>Spread and rest operators</strong> — Copy and combine data structures easily.</li>
+  <li><strong>DOM manipulation</strong> — Change what users see on the screen with JavaScript.</li>
+  <li><strong>Events</strong> — Respond to user actions.</li>
+  <li><strong>Callbacks and Promises</strong> — Handle tasks that take time (like loading data).</li>
+  <li><strong>Async/Await</strong> — Write asynchronous code that reads like synchronous code.</li>
+  <li><strong>JSON</strong> — Exchange data with servers.</li>
+</ul>
+<h3>The Call Stack (How JS Executes Code)</h3>
+<p>JavaScript is <strong>single-threaded</strong> — it executes one operation at a time. The <em>call stack</em> tracks what function is currently running. When a function is called, it is pushed onto the stack. When it returns, it is popped off.</p>
+<div class="code-block">function greet(name) {
+  return "Hello, " + name;
+}
+
+function main() {
+  const message = greet("Priya"); // greet is pushed to the stack
+  console.log(message);            // greet returns, is popped
+}
+
+main(); // main is pushed first</div>
+<div class="note-box"><strong>Why It Matters:</strong> Understanding the call stack helps you read error stack traces and understand why some operations (like fetching data) must be asynchronous.</div>
+`
+      },
+      {
+        title: "Arrays and Array Methods",
+        content: `
+<h3>Higher-Order Array Methods</h3>
+<p>These methods accept a <strong>callback function</strong> and process each element of the array. They are the modern, functional way to work with arrays.</p>
+<h3>forEach — Iterate Without Returning</h3>
+<div class="code-block">const scores = [8, 5, 9, 10, 7];
+
+scores.forEach(function(score, index) {
+  console.log("Question " + (index + 1) + ": " + score);
+});</div>
+<h3>map — Transform Every Element</h3>
+<p><code>map</code> returns a <em>new</em> array where each element is the result of applying the callback. The original array is unchanged.</p>
+<div class="code-block">const prices = [100, 200, 300];
+const discounted = prices.map(price => price * 0.9);
+console.log(discounted); // [90, 180, 270]</div>
+<h3>filter — Keep Only Matching Elements</h3>
+<div class="code-block">const scores = [4, 9, 10, 3, 8, 7];
+const passing = scores.filter(score => score >= 9);
+console.log(passing); // [9, 10]</div>
+<h3>find — Get First Matching Element</h3>
+<div class="code-block">const users = [
+  { name: "Alice", age: 25 },
+  { name: "Bob",   age: 17 },
+  { name: "Carol", age: 30 }
+];
+const adult = users.find(user => user.age >= 18);
+console.log(adult.name); // "Alice"</div>
+<h3>reduce — Compute a Single Value</h3>
+<div class="code-block">const nums = [1, 2, 3, 4, 5];
+const total = nums.reduce((accumulator, current) => accumulator + current, 0);
+console.log(total); // 15
+
+// accumulator starts at 0 (the second argument)
+// Each iteration: acc = acc + current</div>
+<h3>sort — Sort an Array</h3>
+<div class="code-block">const letters = ["c", "a", "b"];
+letters.sort(); // ["a", "b", "c"]
+
+// Sort numbers correctly (default sort is alphabetical!)
+const nums = [10, 2, 30, 1];
+nums.sort((a, b) => a - b); // [1, 2, 10, 30] (ascending)
+nums.sort((a, b) => b - a); // [30, 10, 2, 1] (descending)</div>
+`
+      },
+      {
+        title: "JavaScript Objects and Spread Operator",
+        content: `
+<h3>Object Destructuring</h3>
+<p>Destructuring lets you extract properties from an object into individual variables.</p>
+<div class="code-block">const student = { name: "Priya", age: 20, level: 6 };
+
+// Without destructuring
+const name = student.name;
+const level = student.level;
+
+// With destructuring (cleaner!)
+const { name, age, level } = student;
+console.log(name);  // "Priya"
+console.log(level); // 6
+
+// With a default value
+const { score = 0 } = student;
+console.log(score); // 0 (not in student, so uses default)</div>
+<h3>Array Destructuring</h3>
+<div class="code-block">const colors = ["red", "green", "blue"];
+const [first, second] = colors;
+console.log(first);  // "red"
+console.log(second); // "green"
+
+// Skip elements
+const [, , third] = colors;
+console.log(third); // "blue"</div>
+<h3>Spread Operator (...)</h3>
+<p>The spread operator expands an iterable (array or object) into individual elements. It is great for copying or merging.</p>
+<div class="code-block">// Copying an array (not a reference — a new array!)
+const original = [1, 2, 3];
+const copy = [...original];
+copy.push(4);
+console.log(original); // [1, 2, 3] — unchanged
+console.log(copy);     // [1, 2, 3, 4]
+
+// Merging arrays
+const a = [1, 2];
+const b = [3, 4];
+const merged = [...a, ...b]; // [1, 2, 3, 4]
+
+// Copying an object
+const user = { name: "Alice", role: "student" };
+const updatedUser = { ...user, level: 6, role: "advanced" };
+console.log(updatedUser);
+// { name: "Alice", role: "advanced", level: 6 }</div>
+<h3>Rest Parameters</h3>
+<div class="code-block">// Collect all remaining arguments into an array
+function sum(...numbers) {
+  return numbers.reduce((total, n) => total + n, 0);
+}
+console.log(sum(1, 2, 3, 4, 5)); // 15</div>
+`
+      },
+      {
+        title: "DOM Manipulation and Events",
+        content: `
+<h3>What is the DOM?</h3>
+<p>The <strong>DOM</strong> (Document Object Model) is the browser's internal representation of your HTML page as a tree of objects. JavaScript can read and modify this tree to change what users see — without reloading the page.</p>
+<h3>Selecting Elements</h3>
+<div class="code-block">// By ID — returns one element
+const btn = document.getElementById("submitBtn");
+
+// By CSS selector — returns the FIRST match
+const card = document.querySelector(".card");
+
+// By CSS selector — returns ALL matches (NodeList)
+const items = document.querySelectorAll(".list-item");
+
+// Iterate over NodeList
+items.forEach(item => console.log(item.textContent));</div>
+<h3>Modifying the DOM</h3>
+<div class="code-block">const heading = document.getElementById("title");
+
+// Change text
+heading.textContent = "New Title";
+
+// Change HTML (use carefully — can introduce XSS)
+heading.innerHTML = "Title with &lt;span&gt;span&lt;/span&gt;";
+
+// Change styles
+heading.style.color = "blue";
+heading.style.fontSize = "2rem";
+
+// Add/remove CSS classes
+heading.classList.add("active");
+heading.classList.remove("hidden");
+heading.classList.toggle("expanded"); // Add if absent, remove if present
+heading.classList.contains("active"); // true or false</div>
+<h3>Creating and Appending Elements</h3>
+<div class="code-block">// Create a new element
+const newItem = document.createElement("li");
+newItem.textContent = "New list item";
+newItem.className = "item";
+
+// Append to a parent
+const list = document.getElementById("myList");
+list.appendChild(newItem);
+
+// Remove an element
+newItem.remove();</div>
+<h3>Event Listeners</h3>
+<div class="code-block">const button = document.getElementById("myBtn");
+
+// Listen for a click event
+button.addEventListener("click", function(event) {
+  console.log("Button clicked!");
+  console.log(event.target); // The element that was clicked
+});
+
+// Common events:
+// "click", "dblclick", "mouseover", "mouseout"
+// "keydown", "keyup", "input", "change"
+// "submit", "focus", "blur", "scroll"
+
+// Form submit (prevent default page reload)
+const form = document.getElementById("myForm");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  console.log("Form submitted without page reload!");
+});</div>
+`
+      },
+      {
+        title: "Callbacks and Promises",
+        content: `
+<h3>Asynchronous JavaScript</h3>
+<p>Some operations take time to complete: fetching data from a server, reading a file, or waiting for a timer. JavaScript handles these with <strong>asynchronous code</strong> so that the browser doesn't freeze while waiting.</p>
+<h3>Callbacks</h3>
+<p>A callback is a function passed as an argument to another function, to be called when a task completes.</p>
+<div class="code-block">// setTimeout — wait and then run a callback
+setTimeout(function() {
+  console.log("This runs after 2 seconds");
+}, 2000);
+
+console.log("This runs immediately");
+// Output order:
+// 1. "This runs immediately"
+// 2. "This runs after 2 seconds" (after 2000ms)
+
+// A custom callback example
+function fetchData(url, onSuccess, onError) {
+  // Simulate a network delay
+  setTimeout(function() {
+    if (url) {
+      onSuccess({ data: "Result from " + url });
+    } else {
+      onError("No URL provided");
+    }
+  }, 1000);
+}
+
+fetchData(
+  "https://api.example.com/users",
+  function(result) { console.log(result.data); },
+  function(err)    { console.error(err); }
+);</div>
+<h3>Callback Hell</h3>
+<p>When you nest many callbacks, the code becomes hard to read — this is called "callback hell". Promises solve this problem.</p>
+<h3>Promises</h3>
+<p>A <strong>Promise</strong> represents a value that will be available in the future. It has three states: <em>pending</em>, <em>fulfilled</em>, or <em>rejected</em>.</p>
+<div class="code-block">// Creating a Promise
+const myPromise = new Promise(function(resolve, reject) {
+  const success = true;
+  if (success) {
+    resolve("Operation succeeded!");
+  } else {
+    reject("Operation failed.");
+  }
+});
+
+// Consuming a Promise
+myPromise
+  .then(function(result) {
+    console.log(result); // "Operation succeeded!"
+  })
+  .catch(function(error) {
+    console.error(error);
+  })
+  .finally(function() {
+    console.log("Promise complete (runs always)");
+  });</div>
+<div class="note-box"><strong>Real-World Use:</strong> The browser's built-in <code>fetch()</code> API returns a Promise. This is how you load data from a server without reloading the page.</div>
+`
+      },
+      {
+        title: "Async, Await, and JSON",
+        content: `
+<h3>async / await</h3>
+<p><code>async</code> and <code>await</code> are syntactic sugar over Promises. They let you write asynchronous code that looks and reads like synchronous code — much easier to understand than chains of <code>.then()</code>.</p>
+<div class="code-block">// A function marked async always returns a Promise
+async function loadUser() {
+  try {
+    // await pauses execution until the Promise resolves
+    const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+    const user = await response.json(); // Parse the JSON body
+    console.log(user.name); // e.g. "Leanne Graham"
+  } catch (error) {
+    // If anything throws, catch handles it
+    console.error("Error loading user:", error);
+  }
+}
+
+loadUser();</div>
+<h3>Why try / catch?</h3>
+<p>When using <code>await</code>, network errors or failed responses will throw an error. Wrap your code in <code>try/catch</code> to handle them gracefully.</p>
+<h3>JSON (JavaScript Object Notation)</h3>
+<p>JSON is a text format used to exchange data between a browser and a server. It looks like JavaScript objects but everything is quoted.</p>
+<div class="code-block">// A JSON string (what you receive from a server)
+const jsonString = '{"name":"Priya","level":6,"passed":true}';
+
+// Parse JSON text → JavaScript object
+const obj = JSON.parse(jsonString);
+console.log(obj.name);  // "Priya"
+console.log(obj.level); // 6
+
+// Convert JavaScript object → JSON text (to send to a server)
+const student = { name: "Arjun", score: 95 };
+const json = JSON.stringify(student);
+console.log(json); // '{"name":"Arjun","score":95}'</div>
+<h3>Complete fetch Example</h3>
+<div class="code-block">async function displayPost(postId) {
+  try {
+    const response = await fetch(
+      \`https://jsonplaceholder.typicode.com/posts/\${postId}\`
+    );
+
+    if (!response.ok) {
+      throw new Error("Server returned: " + response.status);
+    }
+
+    const post = await response.json();
+    document.getElementById("title").textContent   = post.title;
+    document.getElementById("content").textContent = post.body;
+
+  } catch (err) {
+    document.getElementById("title").textContent = "Failed to load post.";
+    console.error(err);
+  }
+}
+
+displayPost(1);</div>
+<div class="note-box"><strong>Congratulations!</strong> You have now covered the full frontend curriculum — from HTML structure all the way to asynchronous JavaScript. Take the Level 6 quiz to complete the course!</div>
+`
+      }
+    ];
+  </script>
+  <script src="js/lessons.js"></script>
+</body>
+</html>

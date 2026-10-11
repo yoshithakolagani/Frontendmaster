@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 5 Quiz — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <div class="quiz-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 5 — JavaScript Fundamentals</p>
+      </div>
+      <div class="quiz-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="quiz-main">
+    <div class="container">
+      <div class="card quiz-info-card">
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Question</div>
+          <div class="quiz-info-value" id="questionCounter">1 / 10</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Score</div>
+          <div class="quiz-info-value" id="scoreCounter">0</div>
+        </div>
+        <div class="quiz-info-item">
+          <div class="quiz-info-label">Time</div>
+          <div class="quiz-info-value" id="timerDisplay">10:00</div>
+        </div>
+      </div>
+      <div class="card quiz-progress-section">
+        <div class="progress-wrap">
+          <div class="progress-fill" id="quizProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card question-card">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="explanation-box" id="explanationBox"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 5;
+    var QUIZ_DATA = [
+      {
+        question: "Which keyword declares a block-scoped variable that cannot be reassigned?",
+        options: [
+          "var",
+          "let",
+          "const",
+          "static"
+        ],
+        correct: 2,
+        explanation: "'const' creates block-scoped constants whose binding cannot be reassigned. 'let' allows reassignment, while 'var' is function-scoped."
+      },
+      {
+        question: "What is the result of typeof null in JavaScript?",
+        options: [
+          "\"null\"",
+          "\"undefined\"",
+          "\"object\"",
+          "\"boolean\""
+        ],
+        correct: 2,
+        explanation: "In JavaScript, 'typeof null' returns 'object'. This is a historical quirk in the language specification from its earliest days."
+      },
+      {
+        question: "What is the key difference between == and === in JavaScript?",
+        options: [
+          "== compares values with type conversion; === compares both value and type without coercion",
+          "=== only works for numbers, whereas == works for strings",
+          "== is for assignments, === is for comparison",
+          "There is no difference between them"
+        ],
+        correct: 0,
+        explanation: "'===' is the strict equality operator, checking both value and type. '==' is the loose equality operator, performing type coercion before comparing."
+      },
+      {
+        question: "Which of the following creates a valid template literal with variable interpolation?",
+        options: [
+          "\"Hello $(name)\"",
+          "'Hello {name}'",
+          "`Hello ${name}`",
+          "#Hello %name%"
+        ],
+        correct: 2,
+        explanation: "Template literals are enclosed by backticks (`) and allow embedded expressions using the ${expression} syntax."
+      },
+      {
+        question: "Which loop runs its code block at least once before testing the condition?",
+        options: [
+          "for loop",
+          "while loop",
+          "do...while loop",
+          "for...in loop"
+        ],
+        correct: 2,
+        explanation: "A 'do...while' loop executes its statement block once before checking if the conditional expression evaluates to true."
+      },
+      {
+        question: "What does the statement 'break;' do inside a loop?",
+        options: [
+          "Skips the current iteration and jumps to the next iteration",
+          "Terminates the loop immediately and transfers control to the statement after the loop",
+          "Throws a runtime error",
+          "Restarts the loop from the initial counter value"
+        ],
+        correct: 1,
+        explanation: "The 'break' statement terminates the enclosing loop immediately. 'continue' skips only the remainder of the current iteration."
+      },
+      {
+        question: "How do you declare a concise arrow function that returns the square of a number x?",
+        options: [
+          "const square = x -> x * x;",
+          "const square = (x) => x * x;",
+          "const square = function(x) => x * x;",
+          "const square => (x) { return x * x; };"
+        ],
+        correct: 1,
+        explanation: "'const square = (x) => x * x;' is the concise ES6 arrow function syntax with an implicit return."
+      },
+      {
+        question: "Which array method appends one or more elements to the end of an array?",
+        options: [
+          "push()",
+          "pop()",
+          "shift()",
+          "unshift()"
+        ],
+        correct: 0,
+        explanation: "'push()' adds elements to the end of an array. 'pop()' removes the last element. 'unshift()' adds to the start, and 'shift()' removes from the start."
+      },
+      {
+        question: "How do you access the 'score' property of an object named 'student' using dot notation?",
+        options: [
+          "student->score",
+          "student[score]",
+          "student.score",
+          "student::score"
+        ],
+        correct: 2,
+        explanation: "Dot notation uses objectName.propertyName (e.g., student.score). Bracket notation uses student['score']."
+      },
+      {
+        question: "What is the index of the first element in a JavaScript array?",
+        options: [
+          "1",
+          "0",
+          "-1",
+          "null"
+        ],
+        correct: 1,
+        explanation: "JavaScript arrays are zero-indexed, meaning the first element is located at index 0."
+      }
+    ];
+  </script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

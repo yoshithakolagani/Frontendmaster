@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 4 Lessons — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="lesson-header">
+    <div class="container lesson-header-inner">
+      <div class="lesson-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 4 — Advanced CSS</p>
+      </div>
+      <div class="lesson-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="lesson-main">
+    <div class="container">
+      <div class="card progress-section">
+        <div class="progress-row">
+          <span>📚 Learning Progress</span>
+          <span id="lessonProgressPct">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="lessonProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card lesson-card">
+        <div class="lesson-meta" id="lessonNumber">Lesson 1 of 6</div>
+        <h2 id="lessonTitle">Lesson Title</h2>
+        <div class="lesson-body" id="lessonContent"></div>
+        <div class="lesson-nav">
+          <button class="btn btn-outline" id="prevBtn">← Previous Lesson</button>
+          <button class="btn btn-primary" id="nextBtn">Next Lesson →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 4;
+    var LESSONS = [
+      {
+        title: "Flexbox Fundamentals",
+        content: `
+<h3>What is Flexbox?</h3>
+<p>Flexbox (Flexible Box Layout) is a CSS layout method that lets you arrange elements in a row or column, align them, and distribute space easily. It is one of the most powerful tools for modern web layout.</p>
+<p>To use Flexbox, apply <code>display: flex</code> to the <strong>parent container</strong>. The children automatically become <em>flex items</em>.</p>
+<div class="code-block">/* The container */
+.container {
+  display: flex;
+}
+
+/* Children automatically become flex items */</div>
+<h3>Main Axis vs Cross Axis</h3>
+<ul>
+  <li>The <strong>main axis</strong> runs in the direction of flex items (default: horizontal, left to right).</li>
+  <li>The <strong>cross axis</strong> is perpendicular to the main axis (default: vertical).</li>
+</ul>
+<h3>Key Flex Container Properties</h3>
+<div class="code-block">.container {
+  display: flex;
+  flex-direction: row;         /* row | column | row-reverse | column-reverse */
+  flex-wrap: nowrap;           /* nowrap | wrap | wrap-reverse */
+  justify-content: flex-start; /* Align along main axis */
+  align-items: stretch;        /* Align along cross axis */
+  gap: 1rem;                   /* Space between items */
+}</div>
+<h3>A Simple Flexbox Example</h3>
+<div class="code-block">&lt;div class="nav"&gt;
+  &lt;a href="#"&gt;Home&lt;/a&gt;
+  &lt;a href="#"&gt;About&lt;/a&gt;
+  &lt;a href="#"&gt;Contact&lt;/a&gt;
+&lt;/div&gt;
+
+/* CSS */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}</div>
+<div class="note-box"><strong>Tip:</strong> Flexbox is best for one-dimensional layouts (either a row OR a column). For two-dimensional layouts (rows AND columns), use CSS Grid.</div>
+`
+      },
+      {
+        title: "Flex Direction and Alignment",
+        content: `
+<h3>justify-content — Main Axis Alignment</h3>
+<p>Controls how flex items are distributed along the main axis.</p>
+<div class="code-block">.container {
+  display: flex;
+  justify-content: flex-start;    /* Items at start (default) */
+  justify-content: flex-end;      /* Items at end */
+  justify-content: center;        /* Items centered */
+  justify-content: space-between; /* Equal space between items */
+  justify-content: space-around;  /* Equal space around items */
+  justify-content: space-evenly;  /* Perfectly equal spacing */
+}</div>
+<h3>align-items — Cross Axis Alignment</h3>
+<div class="code-block">.container {
+  display: flex;
+  align-items: stretch;     /* Items fill the cross axis (default) */
+  align-items: flex-start;  /* Align to start of cross axis */
+  align-items: flex-end;    /* Align to end of cross axis */
+  align-items: center;      /* Center on cross axis */
+  align-items: baseline;    /* Align text baselines */
+}</div>
+<h3>Centering an Element (Classic Trick)</h3>
+<div class="code-block">/* Center a child both horizontally and vertically */
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}</div>
+<h3>Flex Item Properties</h3>
+<div class="code-block">.item {
+  flex-grow: 1;    /* How much the item grows to fill space */
+  flex-shrink: 1;  /* How much the item shrinks if needed */
+  flex-basis: auto;/* Initial size before growing/shrinking */
+  /* Shorthand */
+  flex: 1;         /* flex-grow: 1, flex-shrink: 1, flex-basis: 0 */
+  align-self: center; /* Override align-items for this item only */
+  order: 2;           /* Change visual order without changing HTML */
+}</div>
+<div class="note-box"><strong>Common Pattern:</strong> Use <code>flex: 1</code> on items to make them share space equally in a row.</div>
+`
+      },
+      {
+        title: "CSS Grid",
+        content: `
+<h3>What is CSS Grid?</h3>
+<p>CSS Grid is a two-dimensional layout system. Unlike Flexbox (which handles one axis at a time), Grid lets you control both <strong>rows and columns</strong> simultaneously. It is ideal for complex page layouts.</p>
+<div class="code-block">.container {
+  display: grid;
+}</div>
+<h3>Defining Columns and Rows</h3>
+<div class="code-block">.container {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr; /* 3 columns */
+  grid-template-rows: 80px auto 60px;   /* 3 rows */
+}</div>
+<h3>The fr Unit</h3>
+<p>The <code>fr</code> unit represents a <strong>fraction of available space</strong>. It is only available in Grid.</p>
+<div class="code-block">/* Three equal-width columns */
+grid-template-columns: 1fr 1fr 1fr;
+
+/* Shorthand using repeat() */
+grid-template-columns: repeat(3, 1fr);
+
+/* Sidebar + main content */
+grid-template-columns: 280px 1fr;</div>
+<h3>Grid Gap</h3>
+<div class="code-block">.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;              /* Both row and column gap */
+  column-gap: 2rem;         /* Gap between columns only */
+  row-gap: 1rem;            /* Gap between rows only */
+}</div>
+<h3>A Complete Card Grid Example</h3>
+<div class="code-block">&lt;div class="card-grid"&gt;
+  &lt;div class="card"&gt;Card 1&lt;/div&gt;
+  &lt;div class="card"&gt;Card 2&lt;/div&gt;
+  &lt;div class="card"&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+/* auto-fill + minmax creates a responsive grid
+   that automatically adjusts columns based on available width! */</div>
+`
+      },
+      {
+        title: "Grid Rows, Columns, and Gaps",
+        content: `
+<h3>Placing Items on the Grid</h3>
+<p>Grid items can be explicitly placed using <code>grid-column</code> and <code>grid-row</code>. Grid lines are numbered starting from 1.</p>
+<div class="code-block">.item {
+  grid-column: 1 / 3;  /* Start at line 1, end at line 3 (spans 2 columns) */
+  grid-row: 2 / 4;     /* Start at line 2, end at line 4 (spans 2 rows) */
+}
+
+/* Shorthand using span */
+.item {
+  grid-column: 1 / span 2; /* Start at 1, span 2 columns */
+  grid-row: span 2;         /* Span 2 rows wherever placed */
+}</div>
+<h3>Named Grid Areas</h3>
+<p>You can create a visual template using <code>grid-template-areas</code>. This makes layouts very readable.</p>
+<div class="code-block">.page {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 80px 1fr 60px;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  gap: 1rem;
+}
+
+.page header  { grid-area: header; }
+.page aside   { grid-area: sidebar; }
+.page main    { grid-area: main; }
+.page footer  { grid-area: footer; }</div>
+<h3>align-items and justify-items in Grid</h3>
+<div class="code-block">.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  /* Align items within their grid cells */
+  align-items: center;    /* Vertical alignment within cell */
+  justify-items: center;  /* Horizontal alignment within cell */
+}
+
+/* Align a single item */
+.item {
+  align-self: end;
+  justify-self: start;
+}</div>
+<div class="note-box"><strong>Rule of Thumb:</strong> Use Flexbox for navigation bars, button groups, and card contents. Use Grid for overall page layouts, card grids, and complex two-dimensional designs.</div>
+`
+      },
+      {
+        title: "Media Queries and Responsive Design",
+        content: `
+<h3>What is Responsive Design?</h3>
+<p>Responsive design means your webpage looks and works well on all screen sizes — desktop, tablet, and mobile. CSS <strong>media queries</strong> are the primary tool to achieve this.</p>
+<h3>CSS Media Queries</h3>
+<p>A media query applies styles only when a certain condition is met (e.g., screen width is below 768px).</p>
+<div class="code-block">/* Base styles (mobile-first approach) */
+.container { padding: 1rem; }
+.grid { grid-template-columns: 1fr; }
+
+/* Tablet and up: 768px+ */
+@media (min-width: 768px) {
+  .container { padding: 2rem; }
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Desktop and up: 1024px+ */
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Max-width approach (desktop-first) */
+@media (max-width: 640px) {
+  .sidebar { display: none; }
+  .nav { flex-direction: column; }
+}</div>
+<h3>Mobile-First vs Desktop-First</h3>
+<ul>
+  <li><strong>Mobile-first</strong>: Write base styles for mobile, then use <code>min-width</code> queries to add styles for larger screens. This is the recommended modern approach.</li>
+  <li><strong>Desktop-first</strong>: Write base styles for desktop, then use <code>max-width</code> queries to adjust for smaller screens.</li>
+</ul>
+<h3>Common Breakpoints</h3>
+<div class="code-block">/* Mobile:  0–639px (no query needed in mobile-first) */
+/* Tablet:  640px and up */
+@media (min-width: 640px)  { ... }
+
+/* Laptop:  1024px and up */
+@media (min-width: 1024px) { ... }
+
+/* Desktop: 1280px and up */
+@media (min-width: 1280px) { ... }</div>
+<div class="note-box"><strong>Always:</strong> Include <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> in your HTML &lt;head&gt;. Without it, mobile browsers will not apply your media queries correctly.</div>
+`
+      },
+      {
+        title: "Transitions, Transforms, and Animations",
+        content: `
+<h3>CSS Transitions</h3>
+<p>Transitions smoothly change CSS property values over time. They trigger on state changes like <code>:hover</code> or <code>:focus</code>.</p>
+<div class="code-block">button {
+  background: #2563eb;
+  color: white;
+  padding: .6rem 1.2rem;
+  border-radius: 8px;
+  /* property  duration  timing-function  delay */
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px); /* Lift up slightly */
+}</div>
+<h3>CSS Transforms</h3>
+<p>Transforms move, rotate, scale, or skew elements without affecting the document flow.</p>
+<div class="code-block">.card:hover {
+  transform: translateY(-4px);     /* Move up 4px */
+}
+
+.icon {
+  transform: rotate(45deg);        /* Rotate 45 degrees */
+  transform: scale(1.2);           /* Scale to 120% */
+  transform: skewX(10deg);         /* Skew horizontally */
+}
+
+/* Combine transforms */
+.element {
+  transform: translate(-50%, -50%) rotate(30deg) scale(0.9);
+}</div>
+<h3>CSS Keyframe Animations</h3>
+<p>For more complex animations, use <code>@keyframes</code> to define the stages.</p>
+<div class="code-block">/* Define the animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Apply it */
+.card {
+  animation: fadeIn 0.4s ease forwards;
+  /* name  duration  timing  fill-mode */
+}
+
+/* Pulsing animation (infinite) */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.loader {
+  animation: pulse 1s ease infinite;
+}</div>
+<div class="note-box"><strong>Performance Tip:</strong> Animate only <code>opacity</code> and <code>transform</code> for smooth 60fps animations. Animating <code>width</code>, <code>height</code>, or <code>margin</code> triggers expensive layout recalculations.</div>
+`
+      }
+    ];
+  </script>
+  <script src="js/lessons.js"></script>
+</body>
+</html>

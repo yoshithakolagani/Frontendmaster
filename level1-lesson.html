@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 1 Lessons — Frontend Master</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="lesson-header">
+    <div class="container lesson-header-inner">
+      <div class="lesson-brand">
+        <h2>🎓 Frontend Master</h2>
+        <p id="levelTitle">Level 1 — HTML Fundamentals</p>
+      </div>
+      <div class="lesson-user">👤 <span id="headerStudentName"></span></div>
+    </div>
+  </header>
+
+  <main class="lesson-main">
+    <div class="container">
+      <div class="card progress-section">
+        <div class="progress-row">
+          <span>📚 Learning Progress</span>
+          <span id="lessonProgressPct">0%</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-fill" id="lessonProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="card lesson-card">
+        <div class="lesson-meta" id="lessonNumber">Lesson 1 of 6</div>
+        <h2 id="lessonTitle">Lesson Title</h2>
+        <div class="lesson-body" id="lessonContent"></div>
+        <div class="lesson-nav">
+          <button class="btn btn-outline" id="prevBtn">← Previous Lesson</button>
+          <button class="btn btn-primary" id="nextBtn">Next Lesson →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/progress.js"></script>
+  <script>
+    var LEVEL_NUMBER = 1;
+    var LESSONS = [
+      {
+        title: "Introduction to HTML",
+        content: `
+<h3>What is HTML?</h3>
+<p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard language for creating web pages. Every webpage you see uses HTML to define its structure and content.</p>
+<p>HTML uses <strong>elements</strong> and <strong>tags</strong> to mark up content. A tag is written inside angle brackets like <code>&lt;p&gt;</code>. Most tags come in pairs: an opening tag and a closing tag.</p>
+<h3>Why Learn HTML?</h3>
+<ul>
+  <li>HTML is the foundation of every webpage on the internet.</li>
+  <li>You must learn HTML before CSS or JavaScript.</li>
+  <li>It is beginner-friendly, human-readable, and requires no setup to run.</li>
+  <li>All modern browsers understand HTML natively.</li>
+</ul>
+<h3>Your First HTML Elements</h3>
+<p>Tags wrap content to give it meaning. For example, <code>&lt;h1&gt;</code> makes a large heading, and <code>&lt;p&gt;</code> creates a paragraph:</p>
+<div class="code-block">&lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;p&gt;Welcome to my first webpage.&lt;/p&gt;</div>
+<div class="note-box"><strong>Note:</strong> HTML is a <em>markup language</em>, not a programming language. It describes structure, not logic.</div>
+<h3>How Browsers Process HTML</h3>
+<p>When you open a webpage, your browser reads the HTML file, interprets the tags, and renders the content on screen. It builds an internal tree structure called the <strong>DOM</strong> (Document Object Model) that JavaScript can interact with.</p>
+`
+      },
+      {
+        title: "HTML Document Structure",
+        content: `
+<h3>The Standard HTML5 Boilerplate</h3>
+<p>Every HTML file must follow this standard structure for browsers to render it correctly:</p>
+<div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first webpage.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</div>
+<h3>Each Part Explained</h3>
+<ul>
+  <li><strong>&lt;!DOCTYPE html&gt;</strong> — Declares this as an HTML5 document. Always the first line.</li>
+  <li><strong>&lt;html lang="en"&gt;</strong> — The root element wrapping the entire document. The <code>lang</code> attribute helps screen readers and search engines.</li>
+  <li><strong>&lt;head&gt;</strong> — Contains metadata (not visible on the page): title, character encoding, links to CSS files.</li>
+  <li><strong>&lt;meta charset="UTF-8"&gt;</strong> — Ensures all characters (including special symbols) display correctly.</li>
+  <li><strong>&lt;meta name="viewport"&gt;</strong> — Makes the page scale correctly on mobile screens.</li>
+  <li><strong>&lt;title&gt;</strong> — The text shown in the browser tab.</li>
+  <li><strong>&lt;body&gt;</strong> — Contains everything visible to the user.</li>
+</ul>
+<div class="note-box"><strong>Best Practice:</strong> Always include <code>&lt;!DOCTYPE html&gt;</code> at the very top of every HTML file. Without it, browsers may switch to "quirks mode" and display your page incorrectly.</div>
+`
+      },
+      {
+        title: "Headings, Paragraphs, and Text Formatting",
+        content: `
+<h3>HTML Headings</h3>
+<p>HTML provides six levels of headings, from <code>&lt;h1&gt;</code> (most important, largest) to <code>&lt;h6&gt;</code> (least important, smallest). Use them to create a clear content hierarchy.</p>
+<div class="code-block">&lt;h1&gt;Main Page Title&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Sub-section Heading&lt;/h3&gt;
+&lt;h4&gt;Minor Heading&lt;/h4&gt;</div>
+<div class="note-box"><strong>SEO Tip:</strong> Use only one <code>&lt;h1&gt;</code> per page. It signals the main topic to search engines like Google.</div>
+<h3>Paragraphs</h3>
+<p>The <code>&lt;p&gt;</code> tag creates a paragraph block. Browsers automatically add space above and below each paragraph.</p>
+<div class="code-block">&lt;p&gt;This is the first paragraph of text.&lt;/p&gt;
+&lt;p&gt;This is the second paragraph.&lt;/p&gt;</div>
+<h3>Text Formatting Tags</h3>
+<ul>
+  <li><strong>&lt;strong&gt;</strong> — Bold text that also signals importance to assistive tools.</li>
+  <li><strong>&lt;em&gt;</strong> — Italic text that adds emphasis.</li>
+  <li><strong>&lt;u&gt;</strong> — Underlined text.</li>
+  <li><strong>&lt;s&gt;</strong> — Strikethrough text (shows deleted content).</li>
+  <li><strong>&lt;mark&gt;</strong> — Highlighted text (yellow background).</li>
+  <li><strong>&lt;small&gt;</strong> — Smaller text for captions or fine print.</li>
+  <li><strong>&lt;br&gt;</strong> — A line break (self-closing, no closing tag).</li>
+  <li><strong>&lt;hr&gt;</strong> — A horizontal divider line.</li>
+</ul>
+<div class="code-block">&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;italic&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;mark&gt;highlighted&lt;/mark&gt; and &lt;s&gt;crossed out&lt;/s&gt;.&lt;/p&gt;
+&lt;p&gt;Line one.&lt;br /&gt;Line two on the same paragraph.&lt;/p&gt;</div>
+`
+      },
+      {
+        title: "Links and Images",
+        content: `
+<h3>Hyperlinks — &lt;a&gt;</h3>
+<p>Links allow users to navigate to other pages or websites. The <code>href</code> attribute specifies the destination.</p>
+<div class="code-block">&lt;!-- External link --&gt;
+&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;
+
+&lt;!-- Open in a new browser tab --&gt;
+&lt;a href="https://www.google.com" target="_blank" rel="noopener noreferrer"&gt;
+  Google (new tab)
+&lt;/a&gt;
+
+&lt;!-- Link to another page in the same site --&gt;
+&lt;a href="about.html"&gt;About Us&lt;/a&gt;
+
+&lt;!-- Email link --&gt;
+&lt;a href="mailto:hello@example.com"&gt;Send us an email&lt;/a&gt;
+
+&lt;!-- Phone link --&gt;
+&lt;a href="tel:+919876543210"&gt;Call us&lt;/a&gt;</div>
+<div class="note-box"><strong>Security:</strong> Always add <code>rel="noopener noreferrer"</code> when using <code>target="_blank"</code>. This prevents a security vulnerability called "tab-napping".</div>
+<h3>Images — &lt;img&gt;</h3>
+<p>The <code>&lt;img&gt;</code> tag embeds an image. It is self-closing (no closing tag). The <code>alt</code> attribute describes the image for screen readers and when the image fails to load.</p>
+<div class="code-block">&lt;!-- Basic image --&gt;
+&lt;img src="photo.jpg" alt="A mountain landscape" /&gt;
+
+&lt;!-- With size control --&gt;
+&lt;img src="logo.png" alt="Company Logo" width="200" height="80" /&gt;
+
+&lt;!-- External image --&gt;
+&lt;img src="https://picsum.photos/300/200" alt="Sample image" /&gt;</div>
+<h3>Key Image Attributes</h3>
+<ul>
+  <li><strong>src</strong> — File path or URL of the image (required).</li>
+  <li><strong>alt</strong> — Descriptive text (required for accessibility).</li>
+  <li><strong>width / height</strong> — Dimensions in pixels.</li>
+  <li><strong>loading="lazy"</strong> — Delays loading until the image scrolls into view (improves performance).</li>
+</ul>
+`
+      },
+      {
+        title: "Lists and Tables",
+        content: `
+<h3>Unordered Lists (Bullet Points)</h3>
+<p>Use <code>&lt;ul&gt;</code> for items without a specific order. Each item uses <code>&lt;li&gt;</code>.</p>
+<div class="code-block">&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</div>
+<h3>Ordered Lists (Numbered)</h3>
+<p>Use <code>&lt;ol&gt;</code> when the order matters — such as steps in a tutorial.</p>
+<div class="code-block">&lt;ol&gt;
+  &lt;li&gt;Learn HTML first.&lt;/li&gt;
+  &lt;li&gt;Then learn CSS.&lt;/li&gt;
+  &lt;li&gt;Finally, learn JavaScript.&lt;/li&gt;
+&lt;/ol&gt;</div>
+<h3>Nested Lists</h3>
+<div class="code-block">&lt;ul&gt;
+  &lt;li&gt;Frontend
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Backend&lt;/li&gt;
+&lt;/ul&gt;</div>
+<h3>HTML Tables</h3>
+<p>Tables display data in rows and columns. Key tags:</p>
+<ul>
+  <li><strong>&lt;table&gt;</strong> — The table container.</li>
+  <li><strong>&lt;thead&gt;</strong> — Header section.</li>
+  <li><strong>&lt;tbody&gt;</strong> — Body section.</li>
+  <li><strong>&lt;tr&gt;</strong> — A table row.</li>
+  <li><strong>&lt;th&gt;</strong> — Header cell (bold, centered by default).</li>
+  <li><strong>&lt;td&gt;</strong> — Data cell.</li>
+</ul>
+<div class="code-block">&lt;table border="1"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Student&lt;/th&gt;
+      &lt;th&gt;Score&lt;/th&gt;
+      &lt;th&gt;Grade&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Priya&lt;/td&gt;
+      &lt;td&gt;95&lt;/td&gt;
+      &lt;td&gt;A&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Arjun&lt;/td&gt;
+      &lt;td&gt;87&lt;/td&gt;
+      &lt;td&gt;B&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</div>
+<div class="note-box"><strong>Important:</strong> Never use tables for page layout. Tables are for tabular data only. Use CSS Flexbox or Grid for layout.</div>
+`
+      },
+      {
+        title: "Forms and Input Elements",
+        content: `
+<h3>HTML Forms</h3>
+<p>Forms collect user input. The <code>&lt;form&gt;</code> element wraps all input controls. The <code>action</code> attribute specifies where to send the data, and <code>method</code> specifies how (GET or POST).</p>
+<div class="code-block">&lt;form action="/submit" method="POST"&gt;
+  &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" placeholder="Your name" /&gt;
+
+  &lt;label for="email"&gt;Email Address:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required /&gt;
+
+  &lt;label for="age"&gt;Age:&lt;/label&gt;
+  &lt;input type="number" id="age" name="age" min="1" max="120" /&gt;
+
+  &lt;button type="submit"&gt;Submit Form&lt;/button&gt;
+&lt;/form&gt;</div>
+<h3>Common Input Types</h3>
+<ul>
+  <li><strong>text</strong> — Single-line text entry.</li>
+  <li><strong>email</strong> — Email with built-in format validation.</li>
+  <li><strong>password</strong> — Hidden characters for passwords.</li>
+  <li><strong>number</strong> — Numeric entry with optional min/max.</li>
+  <li><strong>checkbox</strong> — A tick box for yes/no choices.</li>
+  <li><strong>radio</strong> — Select exactly one option from a group.</li>
+  <li><strong>date</strong> — A date picker.</li>
+  <li><strong>file</strong> — File upload button.</li>
+</ul>
+<h3>Textarea and Select</h3>
+<div class="code-block">&lt;!-- Multi-line text input --&gt;
+&lt;label for="bio"&gt;Bio:&lt;/label&gt;
+&lt;textarea id="bio" name="bio" rows="4" cols="40"&gt;&lt;/textarea&gt;
+
+&lt;!-- Dropdown menu --&gt;
+&lt;label for="level"&gt;Your Level:&lt;/label&gt;
+&lt;select id="level" name="level"&gt;
+  &lt;option value="beginner"&gt;Beginner&lt;/option&gt;
+  &lt;option value="intermediate"&gt;Intermediate&lt;/option&gt;
+  &lt;option value="advanced"&gt;Advanced&lt;/option&gt;
+&lt;/select&gt;</div>
+<div class="note-box"><strong>Accessibility Rule:</strong> Always pair each input with a <code>&lt;label&gt;</code>. Match the label's <code>for</code> attribute to the input's <code>id</code>. This makes forms usable by screen reader users.</div>
+`
+      }
+    ];
+  </script>
+  <script src="js/lessons.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentation Slide 1 — Frontend Master Quiz Platform</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-page-wrapper {
+      max-width: 1060px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    /* ── The Presentation Slide Canvas ── */
+    .slide-canvas {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+      padding: 2.8rem 3.5rem;
+      border: 1px solid #cbd5e1;
+      position: relative;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      color: #0f172a;
+    }
+
+    /* College Header Row */
+    .slide-college-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 2rem;
+      min-height: 90px;
+    }
+
+    .college-logo-wrap {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .college-logo-img {
+      height: 90px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .college-text-group {
+      text-align: center;
+    }
+
+    .college-name {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .college-location {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #000000;
+      margin-top: 0.15rem;
+    }
+
+    .college-degree {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #000000;
+      margin-top: 0.15rem;
+    }
+
+    /* Project Title Area */
+    .slide-title-section {
+      text-align: center;
+      margin: 2.2rem 0 1.8rem;
+    }
+
+    .slide-main-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #1e3a8a; /* Academic Deep Blue */
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .slide-subtitle-text {
+      font-size: 1.25rem;
+      color: #1e293b;
+      margin-bottom: 1.4rem;
+      font-weight: 500;
+    }
+
+    .slide-meta-lines {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    /* ── The Two Required Buttons ── */
+    .slide-button-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 1.8rem 0 2.2rem;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .slide-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .slide-btn-abstract {
+      background: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+
+    .slide-btn-abstract:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(30, 58, 138, 0.25);
+    }
+
+    .slide-btn-link {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+    }
+
+    .slide-btn-link:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
+    }
+
+    /* ── Bottom Three Columns ── */
+    .slide-bottom-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr 1.6fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #cbd5e1;
+      font-size: 1.08rem;
+      line-height: 1.5;
+    }
+
+    .slide-col-title {
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 0.35rem;
+    }
+
+    .slide-col-content {
+      color: #000000;
+    }
+
+    .members-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .members-list li {
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+    }
+
+    /* ── Abstract Modal / Drawer Section ── */
+    .abstract-drawer {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-top: 2rem;
+      padding: 2.2rem 2.5rem;
+      border: 1px solid #cbd5e1;
+      border-left: 6px solid #1e3a8a;
+      display: block;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .abstract-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .abstract-drawer-header h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1e3a8a;
+      letter-spacing: 0.02em;
+    }
+
+    .abstract-body-text {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: #334155;
+      text-align: justify;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 860px) {
+      .slide-canvas { padding: 2rem 1.5rem; }
+      .slide-college-header { flex-direction: column; text-align: center; }
+      .college-logo-wrap { position: static; transform: none; margin-bottom: 1rem; }
+      .slide-main-title { font-size: 1.7rem; }
+      .slide-bottom-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .members-list li { white-space: normal; }
+      .slide-button-bar { flex-direction: column; align-items: stretch; }
+      .slide-btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="dash-header">
+    <div class="container dash-header-inner">
+      <div class="dash-brand">
+        <h1>🎓 Frontend Master</h1>
+        <p>Project Presentation Slide</p>
+      </div>
+      <div class="dash-user">
+        <a href="dashboard.html" class="btn btn-outline" style="background:rgba(255,255,255,0.15); color:#fff; border-color:transparent;">🏠 Dashboard</a>
+        <a href="index.html" class="btn btn-outline" style="background:rgba(255,255,255,0.15); color:#fff; border-color:transparent;">🔑 Login</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide Page Content -->
+  <main class="slide-page-wrapper">
+
+    <!-- ── THE PRESENTATION SLIDE 1 ── -->
+    <div class="slide-canvas">
+      
+      <!-- College Header -->
+      <div class="slide-college-header">
+        <div class="college-logo-wrap">
+          <img src="images/college-logo.png" alt="Raghu Engineering College Logo" class="college-logo-img" />
+        </div>
+        <div class="college-text-group">
+          <div class="college-name">Raghu Engineering College(A)</div>
+          <div class="college-location">Visakhapatnam</div>
+          <div class="college-degree">Bachelor of Technology</div>
+        </div>
+      </div>
+
+      <!-- Project Title -->
+      <div class="slide-title-section">
+        <h1 class="slide-main-title">FRONTEND MASTER QUIZ PLATFORM</h1>
+        <p class="slide-subtitle-text">A Web-Based Interactive Frontend Learning and Quiz Platform</p>
+        <div class="slide-meta-lines">
+          <div><strong>Presented By:</strong> Team - 5 CSE AI-ML</div>
+          <div><strong>Guided By:</strong> K. Sandeep Kumar</div>
+        </div>
+      </div>
+
+      <!-- ── TWO BUTTONS AS REQUESTED ── -->
+      <div class="slide-button-bar">
+        <!-- 1. Abstract Button -->
+        <button class="slide-btn slide-btn-abstract" id="abstractButton" onclick="toggleAbstract()">
+          <span>📄</span>
+          <span>1. Abstract</span>
+        </button>
+
+        <!-- 2. Website Link Button -->
+        <a class="slide-btn slide-btn-link" href="https://frontendmasterquiz.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <span>🌐</span>
+          <span>2. Website Link</span>
+        </a>
+      </div>
+
+      <!-- Bottom Three Columns from Slide -->
+      <div class="slide-bottom-grid">
+        <!-- Column 1 -->
+        <div>
+          <div class="slide-col-title">Head of Department:</div>
+          <div class="slide-col-content">Dr. G. Sridevi</div>
+        </div>
+
+        <!-- Column 2 -->
+        <div>
+          <div class="slide-col-title">Project Guide:</div>
+          <div class="slide-col-content">
+            K. Sandeep Kumar<br />
+            Assistant Professor
+          </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div>
+          <div class="slide-col-title">Project Members:</div>
+          <ul class="members-list">
+            <li>1. 24981A4287 – K. Yoshitha</li>
+            <li>2. 24981A423H – R. Prakash Silvanus</li>
+            <li>3. 24981A425R – P. Tarun Kumar</li>
+            <li>4. 24981A421K – D. Venkata Ajay</li>
+            <li>5. 24981A422S – N. Durga Prasad</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── ABSTRACT SECTION ── -->
+    <div class="abstract-drawer" id="abstractDrawer">
+      <div class="abstract-drawer-header">
+        <h3>📑 ABSTRACT</h3>
+        <span class="badge badge-available">Project Documentation</span>
+      </div>
+      <p class="abstract-body-text">
+        Frontend Master Quiz is an interactive web-based quiz application developed to help students learn and test their knowledge of Frontend Development in a simple and interesting way. The project is developed using HTML, CSS, and JavaScript and provides a responsive and userfriendly interface for students to practice frontend concepts. 
+        The application contains six progressive levels, covering topics such as HTML Fundamentals, Advanced HTML and Accessibility, CSS, Advanced CSS, JavaScript, and Advanced JavaScript. Each level consists of 10 multiple-choice questions, and students need to score at least 9 out of 10 to unlock the next level. 
+        This level-based system helps students improve their knowledge step by step before moving to advanced topics. Unlike a normal theory-based quiz, the application includes both theoretical and practical programming questions. Practical questions contain small code snippets where students may be asked to identify the correct output, choose the correct code, or fill in a missing part of a given line of code. This helps students test their actual understanding of HTML, CSS, and JavaScript rather than only remembering definitions. After answering each question, the application provides an explanation for the correct answer, allowing students to understand why the answer is correct and learn from their mistakes. Other features include student name registration, countdown timer, progress tracking, level unlocking, instant answer selection, score calculation, retry option, answer explanations, and a final completion screen. After successfully completing all six levels, the student receives a Frontend Master completion result. The project demonstrates how HTML, CSS, and JavaScript can be used together to create an interactive educational application without requiring a backend database. It provides students with a useful platform for learning, practicing, understanding code, and evaluating their frontend development skills progressively. 
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleAbstract() {
+      const drawer = document.getElementById('abstractDrawer');
+      drawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
